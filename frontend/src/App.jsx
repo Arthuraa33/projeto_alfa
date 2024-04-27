@@ -33,22 +33,94 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/cadastro/cliente" element={<CadastroCliente />} />
-        <Route path="/cadastro/marca" element={<CadastroMarca />} />
-        <Route path="/cadastro/produto" element={<CadastroProduto />} />
-        <Route path="/cadastro/transporte" element={<CadastroTransporte />} />
-        <Route path="/cadastro/tipotransporte" element={<CadastroTipoTransporte />} />
-        <Route path="/cadastro/vendedor" element={<CadastroVendedor />} />
-        <Route path="/cadastro/tabelaprecos" element={<CadastroTabelaPreco />} />
-        <Route path="/cadastro/fornecedor" element={<CadastroFornecedor />} />
-        <Route path="/cadastro/pedido" element={<CadastroPedido />} />
-        <Route path="/cadastro/orcamento" element={<CadastroOrcamento />} />
-        <Route path="/cadastro/pesquisa" element={<CadastroPesquisa />} />
-        <Route path="/gestao/cliente" element={<GestaoCliente />} />
+        <Route path="/" element={
+            <ProtectedRoute>
+              <Home />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/cliente" element={
+            <ProtectedRoute>
+              <CadastroCliente />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/fornecedor" element={
+            <ProtectedRoute>
+              <CadastroFornecedor />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/marca" element={
+            <ProtectedRoute>
+              <CadastroMarca />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/orcamento" element={
+            <ProtectedRoute>
+              <CadastroOrcamento />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/pedido" element={
+            <ProtectedRoute>
+              <CadastroPedido />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/pesquisa" element={
+            <ProtectedRoute>
+              <CadastroPesquisa />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/produto" element={
+            <ProtectedRoute>
+              <CadastroProduto />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/tabelaprecos" element={
+            <ProtectedRoute>
+              <CadastroTabelaPreco />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/tipotransporte" element={
+            <ProtectedRoute>
+              <CadastroTipoTransporte />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/transporte" element={
+            <ProtectedRoute>
+              <CadastroTransporte />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/vendedor" element={
+            <ProtectedRoute>
+              <CadastroVendedor />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/gestao/cliente" element={
+            <ProtectedRoute>
+              <GestaoCliente />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/register" element={
+            <ProtectedRoute>
+              <RegisterAndLogout />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/login" element={<Login />} />
         <Route path="/logout" element={<Logout />} />
-        <Route path="/register" element={<RegisterAndLogout />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
