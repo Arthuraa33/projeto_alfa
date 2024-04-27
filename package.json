@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "create-vite": "^5.2.3",
+    "react-hook-form": "^7.51.3"
+  }
+}

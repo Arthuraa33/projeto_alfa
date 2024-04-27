@@ -1,0 +1,13 @@
+Django>=5.0.4,<5.1
+psycopg2-binary==2.9.9
+psycopg2==2.9.9
+python-dotenv==0.20.0
+
+asgiref
+django-cors-headers
+djangorestframework
+djangorestframework-simplejwt
+PyJWT
+pytz
+sqlparse
+python-dotenv
