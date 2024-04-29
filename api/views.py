@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from .serializers import (UserSerializer, 
                           ClientesSerializer,
+                          ClientesUpdateSerializer,
                           AreasVendaSerializer,
                           ClassificacaoClientesSerializer,
                           MarcasSerializer, 
@@ -18,6 +19,7 @@ from .serializers import (UserSerializer,
                           PesquisasSerializer
                           ) 
 from rest_framework.permissions import IsAuthenticated, AllowAny
+from rest_framework.authentication import TokenAuthentication
 from .models import (Clientes, 
                      AreasVenda,
                      ClassificacaoClientes,
@@ -41,17 +43,22 @@ class CreateUserView(generics.CreateAPIView):
 class ClientesListCreate(generics.ListCreateAPIView):
     queryset = Clientes.objects.all()
     serializer_class = ClientesSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 class ClientesList(generics.ListCreateAPIView):
     queryset = Clientes.objects.all()
     serializer_class = ClientesSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
 
 class ClientesDelete(generics.DestroyAPIView):
     queryset = Clientes.objects.all()
     serializer_class = ClientesSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
+
+class ClientesDetail(generics.RetrieveUpdateAPIView):
+    queryset = Clientes.objects.all()
+    serializer_class = ClientesUpdateSerializer
+    permission_classes = [AllowAny]
 
 class MarcasListCreate(generics.ListCreateAPIView):
     queryset = Marcas.objects.all()

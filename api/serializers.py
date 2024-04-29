@@ -31,6 +31,18 @@ class ClientesSerializer(serializers.ModelSerializer):
         model = Clientes
         fields = '__all__'
 
+class ClientesUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Clientes
+        fields = '__all__'
+
+    def update(self, instance, validated_data):
+        instance.cliente_nome = validated_data.get('cliente_nome', instance.cliente_nome)
+        instance.classificacao_id = validated_data.get('classificacao_id', instance.classificacao_id)
+
+        instance.save()
+        return instance
+
 class AreasVendaSerializer(serializers.ModelSerializer):
     class Meta:
         model = AreasVenda
