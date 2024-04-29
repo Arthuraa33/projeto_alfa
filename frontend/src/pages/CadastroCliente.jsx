@@ -19,9 +19,54 @@ function CadastroCliente() {
     const [cidade, setCidade] = useState("");
     const [estado, setEstado] = useState("");
     const [observacao, setObservacao] = useState("");
+    const [areas, setAreas] = useState([]);
+    const [area_id, setAreaId] = useState([]);
+    const [area_nome, setAreaNome] = useState([]);
+
+    const [classificacao, setClassificacaoCliente] = useState([]);
+    const [classificacao_id, setClassificacaoId] = useState([]);
+    const [classificacao_nome, setClassificacaoNome] = useState([]);
+
+    useEffect(() => {
+        getAreaVenda();
+        getClassificacaoCliente();
+    }, []);
+
+    const getAreaVenda = () => {
+        api
+          .get("/api/cadastro/areavenda/")
+          .then((res) => {
+            setAreas(res.data);
+            if (res.data.length > 0) {
+                setAreaNome(res.data[0].area_nome); 
+            }
+          })
+          .catch((err) => {
+            console.error('Erro ao buscar Área de Venda:', err);
+          });
+      };
+    
+    const getClassificacaoCliente = () => {
+        api
+          .get("/api/cadastro/classificacaocliente/")
+          .then((res) => {
+            setClassificacaoCliente(res.data);
+            if (res.data.length > 0) {
+                setClassificacaoNome(res.data[0].classificacao_nome); 
+            }
+          })
+          .catch((err) => {
+            console.error('Erro ao buscar Classificação do Cliente:', err);
+          });
+      };
 
     const createClient = (e) => {
         e.preventDefault();
+        const selectedArea = areas.find(area => area.area_nome === area_nome);
+        const area_id = selectedArea ? selectedArea.area_id : null;
+
+        const selectedClassificacao = classificacao.find(classificacao => classificacao.classificacao_nome === classificacao_nome);
+        const classificacao_id = selectedClassificacao ? selectedClassificacao.classificacao_id : null;
         api
             .post("/api/cadastro/cliente/", { cliente_nome, 
                 contato,
@@ -36,6 +81,8 @@ function CadastroCliente() {
                 bairro,
                 cidade,
                 estado,
+                area_id,
+                classificacao_id,
                 observacao
               })
             .then((res) => {
@@ -181,6 +228,35 @@ function CadastroCliente() {
                     onChange={(e) => setEstado(e.target.value)}
                     value={estado}
                 />
+
+                <div>
+                    <label htmlFor="area">Área de Venda:</label>
+                    <select 
+                        id="area" 
+                        name="area"
+                        onChange={(e) => setAreaId(e.target.value)}
+                        value={area_id}
+                    >
+                        {areas.map(area => (
+                            <option key={area.area_id} value={area.area_id}>{area.area_nome}</option>
+                        ))}
+                    </select>
+                </div>
+
+                <div>
+                    <label htmlFor="classificacao">Área de Venda:</label>
+                    <select 
+                        id="classificacao" 
+                        name="classificacao"
+                        onChange={(e) => setClassificacaoId(e.target.value)}
+                        value={classificacao_id}
+                    >
+                        {classificacao.map(classificacao => (
+                            <option key={classificacao.classificacao_id} value={classificacao.classificacao_id}>{classificacao.classificacao_nome}</option>
+                        ))}
+                    </select>
+                </div>
+
                 <label htmlFor="observacao">Observação:</label>
                 <br />
                 <input
