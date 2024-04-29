@@ -3,7 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth.models import User
 from rest_framework import generics
 from .serializers import (UserSerializer, 
-                          ClientesSerializer, 
+                          ClientesSerializer,
+                          AreasVendaSerializer,
+                          ClassificacaoClientesSerializer,
                           MarcasSerializer, 
                           ProdutosSerializer, 
                           TransportesSerializer, 
@@ -17,6 +19,8 @@ from .serializers import (UserSerializer,
                           ) 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from .models import (Clientes, 
+                     AreasVenda,
+                     ClassificacaoClientes,
                      Marcas, 
                      Produtos, 
                      Transportes, 
@@ -52,6 +56,16 @@ class ClientesDelete(generics.DestroyAPIView):
 class MarcasListCreate(generics.ListCreateAPIView):
     queryset = Marcas.objects.all()
     serializer_class = MarcasSerializer
+    permission_classes = [IsAuthenticated]
+
+class AreaVendaListCreate(generics.ListCreateAPIView):
+    queryset = AreasVenda.objects.all()
+    serializer_class = AreasVendaSerializer
+    permission_classes = [IsAuthenticated]
+
+class ClassificacaoClientesListCreate(generics.ListCreateAPIView):
+    queryset = ClassificacaoClientes.objects.all()
+    serializer_class = ClassificacaoClientesSerializer
     permission_classes = [IsAuthenticated]
 
 class ProdutosListCreate(generics.ListCreateAPIView):

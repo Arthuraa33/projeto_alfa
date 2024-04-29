@@ -9,13 +9,17 @@ function CadastroTransporte() {
     const [capacidade_kg, setCapacidadeKg] = useState([]);
     const [capacidade_un, setCapacidadeUn] = useState([]);
     const [embalagem_transporte, setEmbalagem] = useState([]);
+    const [preco_km, setPrecoKm] = useState([]);
 
     const createTransporte = (e) => {
         e.preventDefault();
         api
             .post("/api/cadastro/transporte/", { transporte_nome , 
                                             capacidade_kg,
-                                            capacidade_un})
+                                            capacidade_un,
+                                            embalagem_transporte,
+                                            preco_km
+                                        })
             .then((res) => {
                 if (res.status === 201) alert("Transporte Cadastrado!");
                 else alert("Falha em criar o Transporte.");
@@ -59,7 +63,27 @@ function CadastroTransporte() {
                     onChange={(e) => setCapacidadeUn(e.target.value)}
                     value={capacidade_un}
                 />
-                <input type="submit" value="Submit"></input>
+                <label htmlFor="embalagem_transporte">Embalagem de Transporte:</label>
+                <br />
+                <input
+                    type="text"
+                    id="embalagem_transporte"
+                    name="embalagem_transporte"
+                    required
+                    onChange={(e) => setEmbalagem(e.target.value)}
+                    value={embalagem_transporte}
+                />
+                <label htmlFor="preco_km">Embalagem de Transporte:</label>
+                <br />
+                <input
+                    type="text"
+                    id="preco_km"
+                    name="preco_km"
+                    required
+                    onChange={(e) => setPrecoKm(e.target.value)}
+                    value={preco_km}
+                />
+                <input type="submit" value="Enviar"></input>
             </form>
             <Footer/>
         </div>

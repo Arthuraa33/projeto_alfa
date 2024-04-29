@@ -16,5 +16,7 @@ urlpatterns = [
     path("cadastro/pedido/", views.PedidosListCreate.as_view(), name="pedido-list"),
     path("cadastro/orcamento/", views.OrcamentosListCreate.as_view(), name="orcamento-list"),
     path("cadastro/pesquisa/", views.PesquisasListCreate.as_view(), name="pesquisa-list"),
+    path("cadastro/areavenda/", views.AreaVendaListCreate.as_view(), name="area-list"),
+    path("cadastro/classificacaocliente/", views.ClassificacaoClientesListCreate.as_view(), name="area-list"),
 
 ]
