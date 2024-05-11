@@ -14,6 +14,8 @@ import CadastroTabelaPreco from "./pages/CadastroTabelaPreco"
 import CadastroPedido from "./pages/CadastroPedido"
 import CadastroOrcamento from "./pages/CadastroOrcamento"
 import CadastroPesquisa from "./pages/CadastroPesquisa"
+import CadastroAreaVenda from "./pages/CadastroAreaVenda"
+import CadastroClassificacaoCliente from "./pages/CadastroClassificacaoCliente"
 import GestaoCliente from "./pages/GestaoCliente" 
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
@@ -42,6 +44,18 @@ function App() {
         <Route path="/cadastro/cliente" element={
             <ProtectedRoute>
               <CadastroCliente />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/areavenda" element={
+            <ProtectedRoute>
+              <CadastroAreaVenda />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/classificacaocliente" element={
+            <ProtectedRoute>
+              <CadastroClassificacaoCliente />
             </ProtectedRoute>
           }
         />
