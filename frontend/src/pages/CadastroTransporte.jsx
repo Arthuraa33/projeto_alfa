@@ -8,7 +8,6 @@ function CadastroTransporte() {
     const [transporte_nome, setTransporte] = useState([]);
     const [capacidade_kg, setCapacidadeKg] = useState([]);
     const [capacidade_un, setCapacidadeUn] = useState([]);
-    const [embalagem_transporte, setEmbalagem] = useState([]);
     const [preco_km, setPrecoKm] = useState([]);
 
     const createTransporte = (e) => {
@@ -17,7 +16,6 @@ function CadastroTransporte() {
             .post("/api/cadastro/transporte/", { transporte_nome , 
                                             capacidade_kg,
                                             capacidade_un,
-                                            embalagem_transporte,
                                             preco_km
                                         })
             .then((res) => {
@@ -62,16 +60,6 @@ function CadastroTransporte() {
                     required
                     onChange={(e) => setCapacidadeUn(e.target.value)}
                     value={capacidade_un}
-                />
-                <label htmlFor="embalagem_transporte">Embalagem de Transporte:</label>
-                <br />
-                <input
-                    type="text"
-                    id="embalagem_transporte"
-                    name="embalagem_transporte"
-                    required
-                    onChange={(e) => setEmbalagem(e.target.value)}
-                    value={embalagem_transporte}
                 />
                 <label htmlFor="preco_km">Embalagem de Transporte:</label>
                 <br />
