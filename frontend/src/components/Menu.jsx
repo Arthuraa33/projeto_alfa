@@ -44,6 +44,8 @@ function Menu(){
                                 <li><Link className="dropdown-item" to="/cadastro/transporte">Transporte</Link></li>
                                 <li><Link className="dropdown-item" to="/cadastro/tipotransporte">Tipo Transporte</Link></li>
                                 <li><Link className="dropdown-item" to="/cadastro/tabelaprecos">Tabela de Preços</Link></li>
+                                <li><Link className="dropdown-item" to="/cadastro/areavenda">Area de Venda</Link></li>
+                                <li><Link className="dropdown-item" to="/cadastro/classificacaocliente">Classificação do Cliente</Link></li>
                                 <li><Link className="dropdown-item" to="/cadastro/pesquisa">Pesquisa</Link></li>
                                 
                             </ul>

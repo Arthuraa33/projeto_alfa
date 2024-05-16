@@ -3,6 +3,7 @@ import api from "../api";
 import Menu from "../components/Menu";
 import Footer from "../components/Footer";
 import "../styles/Home.css"
+import "../styles/Formulario.css"
 
 function CadastroCliente() {
     const [cliente_nome, setNome] = useState([]);
@@ -96,180 +97,182 @@ function CadastroCliente() {
     return (
         <div>
             <Menu/>
-            <h2>Cadastro de Clientes</h2>
-            <form onSubmit={createClient}>
-                <label htmlFor="cliente_nome">Cliente:</label>
-                <br />
-                <input
-                    type="text"
-                    id="cliente_nome"
-                    name="cliente_nome"
-                    required
-                    onChange={(e) => setNome(e.target.value)}
-                    value={cliente_nome}
-                />
-                <label htmlFor="contato">Contato:</label>
-                <br />
-                <input
-                    type="text"
-                    id="contato"
-                    name="contato"
-                    required
-                    onChange={(e) => setContato(e.target.value)}
-                    value={contato}
-                />
-                <label htmlFor="aniversario">Aniversário:</label>
-                <br />
-                <input
-                    type="text"
-                    id="aniversario"
-                    name="aniversario"
-                    required
-                    onChange={(e) => setAniversario(e.target.value)}
-                    value={aniversario}
-                />
-                <label htmlFor="telefone">Telefone:</label>
-                <br />
-                <input
-                    type="text"
-                    id="telefone"
-                    name="telefone"
-                    required
-                    onChange={(e) => setTelefone(e.target.value)}
-                    value={telefone}
-                />
-                <label htmlFor="email">E-Mail:</label>
-                <br />
-                <input
-                    type="text"
-                    id="email"
-                    name="email"
-                    required
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                />
-                <label htmlFor="cnpj">CNPJ:</label>
-                <br />
-                <input
-                    type="text"
-                    id="cnpj"
-                    name="cnpj"
-                    required
-                    onChange={(e) => setCnpj(e.target.value)}
-                    value={cnpj}
-                />
-                <label htmlFor="rua">Rua/Avenida:</label>
-                <br />
-                <input
-                    type="text"
-                    id="rua"
-                    name="rua"
-                    required
-                    onChange={(e) => setRua(e.target.value)}
-                    value={rua}
-                />
-                <label htmlFor="numero_rua">Número:</label>
-                <br />
-                <input
-                    type="text"
-                    id="numero_rua"
-                    name="numero_rua"
-                    required
-                    onChange={(e) => setNumero_rua(e.target.value)}
-                    value={numero_rua}
-                />
-                <label htmlFor="complemento_rua">Complemento:</label>
-                <br />
-                <input
-                    type="text"
-                    id="complemento_rua"
-                    name="complemento_rua"
-                    required
-                    onChange={(e) => setComplemento_rua(e.target.value)}
-                    value={complemento_rua}
-                />
-                <label htmlFor="ponto_referencia">Ponto Referência:</label>
-                <br />
-                <input
-                    type="text"
-                    id="ponto_referencia"
-                    name="ponto_referencia"
-                    required
-                    onChange={(e) => setPonto_referencia(e.target.value)}
-                    value={ponto_referencia}
-                />
-                <label htmlFor="bairro">Bairro:</label>
-                <br />
-                <input
-                    type="text"
-                    id="bairro"
-                    name="bairro"
-                    required
-                    onChange={(e) => setBairro(e.target.value)}
-                    value={bairro}
-                />
-                <label htmlFor="cidade">Cidade:</label>
-                <br />
-                <input
-                    type="text"
-                    id="cidade"
-                    name="cidade"
-                    required
-                    onChange={(e) => setCidade(e.target.value)}
-                    value={cidade}
-                />
-                <label htmlFor="estado">Estado:</label>
-                <br />
-                <input
-                    type="text"
-                    id="estado"
-                    name="estado"
-                    required
-                    onChange={(e) => setEstado(e.target.value)}
-                    value={estado}
-                />
+            <div className="formulario">
+                <h2>Cadastro de Clientes</h2>
+                <form onSubmit={createClient}>
+                    <label htmlFor="cliente_nome">Cliente:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="cliente_nome"
+                        name="cliente_nome"
+                        required
+                        onChange={(e) => setNome(e.target.value)}
+                        value={cliente_nome}
+                    />
+                    <label htmlFor="contato">Contato:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="contato"
+                        name="contato"
+                        required
+                        onChange={(e) => setContato(e.target.value)}
+                        value={contato}
+                    />
+                    <label htmlFor="aniversario">Aniversário:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="aniversario"
+                        name="aniversario"
+                        required
+                        onChange={(e) => setAniversario(e.target.value)}
+                        value={aniversario}
+                    />
+                    <label htmlFor="telefone">Telefone:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="telefone"
+                        name="telefone"
+                        required
+                        onChange={(e) => setTelefone(e.target.value)}
+                        value={telefone}
+                    />
+                    <label htmlFor="email">E-Mail:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        required
+                        onChange={(e) => setEmail(e.target.value)}
+                        value={email}
+                    />
+                    <label htmlFor="cnpj">CNPJ:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="cnpj"
+                        name="cnpj"
+                        required
+                        onChange={(e) => setCnpj(e.target.value)}
+                        value={cnpj}
+                    />
+                    <label htmlFor="rua">Rua/Avenida:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="rua"
+                        name="rua"
+                        required
+                        onChange={(e) => setRua(e.target.value)}
+                        value={rua}
+                    />
+                    <label htmlFor="numero_rua">Número:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="numero_rua"
+                        name="numero_rua"
+                        required
+                        onChange={(e) => setNumero_rua(e.target.value)}
+                        value={numero_rua}
+                    />
+                    <label htmlFor="complemento_rua">Complemento:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="complemento_rua"
+                        name="complemento_rua"
+                        required
+                        onChange={(e) => setComplemento_rua(e.target.value)}
+                        value={complemento_rua}
+                    />
+                    <label htmlFor="ponto_referencia">Ponto Referência:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="ponto_referencia"
+                        name="ponto_referencia"
+                        required
+                        onChange={(e) => setPonto_referencia(e.target.value)}
+                        value={ponto_referencia}
+                    />
+                    <label htmlFor="bairro">Bairro:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="bairro"
+                        name="bairro"
+                        required
+                        onChange={(e) => setBairro(e.target.value)}
+                        value={bairro}
+                    />
+                    <label htmlFor="cidade">Cidade:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="cidade"
+                        name="cidade"
+                        required
+                        onChange={(e) => setCidade(e.target.value)}
+                        value={cidade}
+                    />
+                    <label htmlFor="estado">Estado:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="estado"
+                        name="estado"
+                        required
+                        onChange={(e) => setEstado(e.target.value)}
+                        value={estado}
+                    />
 
-                <div>
-                    <label htmlFor="area">Área de Venda:</label>
-                    <select 
-                        id="area" 
-                        name="area"
-                        onChange={(e) => setAreaId(e.target.value)}
-                        value={area_id}
-                    >
-                        {areas.map(area => (
-                            <option key={area.area_id} value={area.area_id}>{area.area_nome}</option>
-                        ))}
-                    </select>
-                </div>
+                    <div>
+                        <label htmlFor="area">Área de Venda:</label>
+                        <select 
+                            id="area" 
+                            name="area"
+                            onChange={(e) => setAreaId(e.target.value)}
+                            value={area_id}
+                        >
+                            {areas.map(area => (
+                                <option key={area.area_id} value={area.area_id}>{area.area_nome}</option>
+                            ))}
+                        </select>
+                    </div>
 
-                <div>
-                    <label htmlFor="classificacao">Área de Venda:</label>
-                    <select 
-                        id="classificacao" 
-                        name="classificacao"
-                        onChange={(e) => setClassificacaoId(e.target.value)}
-                        value={classificacao_id}
-                    >
-                        {classificacao.map(classificacao => (
-                            <option key={classificacao.classificacao_id} value={classificacao.classificacao_id}>{classificacao.classificacao_nome}</option>
-                        ))}
-                    </select>
-                </div>
+                    <div>
+                        <label htmlFor="classificacao">Classificação Cliente:</label>
+                        <select 
+                            id="classificacao" 
+                            name="classificacao"
+                            onChange={(e) => setClassificacaoId(e.target.value)}
+                            value={classificacao_id}
+                        >
+                            {classificacao.map(classificacao => (
+                                <option key={classificacao.classificacao_id} value={classificacao.classificacao_id}>{classificacao.classificacao_nome}</option>
+                            ))}
+                        </select>
+                    </div>
 
-                <label htmlFor="observacao">Observação:</label>
-                <br />
-                <input
-                    type="text"
-                    id="observacao"
-                    name="observacao"
-                    required
-                    onChange={(e) => setObservacao(e.target.value)}
-                    value={observacao}
-                />
+                    <label htmlFor="observacao">Observação:</label>
+                    <br />
+                    <input
+                        type="text"
+                        id="observacao"
+                        name="observacao"
+                        required
+                        onChange={(e) => setObservacao(e.target.value)}
+                        value={observacao}
+                    />
 
-                <input type="submit" value="Submit"></input>
-            </form>
+                    <input type="submit" value="Submit"></input>
+                </form>
+            </div>
             <Footer/>
         </div>
     );
