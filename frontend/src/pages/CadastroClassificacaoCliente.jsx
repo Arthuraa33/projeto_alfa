@@ -10,7 +10,7 @@ function CadastroClassificacaoCliente() {
     const createClassificacaoCliente = (e) => {
         e.preventDefault();
         api
-            .post("/api/cadastro/classificacaocliente/", { classificacao })
+            .post("/api/cadastro/classificacaocliente/", { classificacao_nome })
             .then((res) => {
                 if (res.status === 201) alert("Classificação de Cliente Cadastrada!");
                 else alert("Falha em criar a Classificação do Cliente.");

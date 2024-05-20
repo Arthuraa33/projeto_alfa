@@ -10,7 +10,7 @@ function CadastroAreaVenda() {
     const createAreaVenda = (e) => {
         e.preventDefault();
         api
-            .post("/api/cadastro/areavenda/", { area_venda })
+            .post("/api/cadastro/areavenda/", { area_nome })
             .then((res) => {
                 if (res.status === 201) alert("Área de Venda Cadastrada!");
                 else alert("Falha em criar a Área de Venda.");

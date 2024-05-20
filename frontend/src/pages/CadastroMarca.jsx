@@ -10,7 +10,7 @@ function CadastroMarca() {
     const createMarca = (e) => {
         e.preventDefault();
         api
-            .post("/api/cadastro/marca/", { marca })
+            .post("/api/cadastro/marca/", { marca_nome })
             .then((res) => {
                 if (res.status === 201) alert("Marca Cadastrada!");
                 else alert("Falha em criar a Marca.");
