@@ -21,7 +21,11 @@ function CadastroPedido() {
     const [vendedores, setVendedores] = useState([]);
     const [vendedor_id, setVendedorId] = useState([]);
     const [vendedor_nome, setVendedorNome] = useState([]);
+    const [pedido_comissao, setPedidoComissao] = useState([]);
     const [pedido_quantidade, setPedidoQuantidade] = useState([]);
+    const [pedido_data, setPedidoData] = useState([]);
+    const [pedido_condicao_pagamento, setCondicaoPagamento] = useState([]);
+    const [pedido_valor, setPedidoValor] = useState([]);
 
     useEffect(() => {
         getClientes();
@@ -124,7 +128,11 @@ function CadastroPedido() {
                                             transporte_id,
                                             tipo_transporte_id,
                                             vendedor_id,
-                                            pedido_quantidade
+                                            pedido_comissao,
+                                            pedido_quantidade,
+                                            pedido_data,
+                                            pedido_condicao_pagamento,
+                                            pedido_valor
                                         })
             .then((res) => {
                 if (res.status === 201) alert("Pedido Cadastrado!");
@@ -208,6 +216,17 @@ function CadastroPedido() {
                                 ))}
                             </select>
                         </div>
+                        <label htmlFor="pedido_comissao">Comissao do Pedido:</label>
+                        <br />
+                        <input
+                            type="text"
+                            id="pedido_comissao"
+                            name="pedido_comissao"
+                            required
+                            onChange={(e) => setPedidoComissao(e.target.value)}
+                            value={pedido_comissao}
+                        />
+
                         <label htmlFor="pedido_quantidade">Quantidade do Pedido:</label>
                         <br />
                         <input
@@ -218,6 +237,40 @@ function CadastroPedido() {
                             onChange={(e) => setPedidoQuantidade(e.target.value)}
                             value={pedido_quantidade}
                         />
+
+                        <label htmlFor="pedido_data">Data do Pedido:</label>
+                        <br />
+                        <input
+                            type="text"
+                            id="pedido_data"
+                            name="pedido_data"
+                            required
+                            onChange={(e) => setPedidoData(e.target.value)}
+                            value={pedido_data}
+                        />
+
+                        <label htmlFor="pedido_condicao_pagamento">Condição de Pagamento:</label>
+                        <br />
+                        <input
+                            type="text"
+                            id="pedido_condicao_pagamento"
+                            name="pedido_condicao_pagamento"
+                            required
+                            onChange={(e) => setCondicaoPagamento(e.target.value)}
+                            value={pedido_condicao_pagamento}
+                        />
+
+                        <label htmlFor="pedido_valor">Valor do Pedido:</label>
+                        <br />
+                        <input
+                            type="text"
+                            id="pedido_valor"
+                            name="pedido_valor"
+                            required
+                            onChange={(e) => setPedidoValor(e.target.value)}
+                            value={pedido_valor}
+                        />
+
                         <input type="submit" value="Submit"></input>
                     </form>
                 </div>
