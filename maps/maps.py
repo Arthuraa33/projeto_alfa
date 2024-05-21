@@ -13,7 +13,8 @@ gmaps = googlemaps.Client(key=api_key)
 source = 'Avenida João Pereira dos Santos Filho, Itapetinga, Mossoró, RN, Brasil'
 destination  = 'Rua José Alves Cavalcante 951, CE, Brasil'
 
-direction_result = gmaps.distance_matrix(source, destination, mode='driving')
+#direction_result = gmaps.distance_matrix(source, destination, mode='driving')
+coordinates = gmaps.geocode(source)
 # Validate an address with address validation
 
-print(direction_result)
+print(coordinates[0]['geometry']['location'])
