@@ -19,11 +19,12 @@ import CadastroClassificacaoCliente from "./pages/CadastroClassificacaoCliente"
 import GestaoCliente from "./pages/GestaoCliente" 
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
+import HomeApp from "./pages/HomeApp"
 
 
 function Logout() {
   localStorage.clear()
-  return <Navigate to="/login" />
+  return <Navigate to="/" />
 }
 
 function RegisterAndLogout() {
@@ -35,12 +36,6 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
         <Route path="/cadastro/cliente" element={
             <ProtectedRoute>
               <CadastroCliente />
@@ -126,15 +121,23 @@ function App() {
           }
         />
 
-        <Route path="/register" element={
+        <Route path="/logout" element={
             <ProtectedRoute>
-              <RegisterAndLogout />
+              <Logout />
             </ProtectedRoute>
-          }
+          } 
         />
 
+        <Route path="/app" element={
+            <ProtectedRoute>
+              <HomeApp />
+            </ProtectedRoute>
+          } 
+        />
+
+        <Route path="/" element={ <Home /> } />
+        <Route path="/register" element={ <RegisterAndLogout /> }/>
         <Route path="/login" element={<Login />} />
-        <Route path="/logout" element={<Logout />} />
         <Route path="*" element={<NotFound />}></Route>
       </Routes>
     </BrowserRouter>
