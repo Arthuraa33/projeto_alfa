@@ -28,6 +28,7 @@ function Menu(){
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><Link className="dropdown-item" to="/gestao/cliente">Cliente</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/dashboard">Dashboard</Link></li>
                                 
                             </ul>
             </li>

@@ -17,6 +17,7 @@ import CadastroPesquisa from "./pages/CadastroPesquisa"
 import CadastroAreaVenda from "./pages/CadastroAreaVenda"
 import CadastroClassificacaoCliente from "./pages/CadastroClassificacaoCliente"
 import GestaoCliente from "./pages/GestaoCliente" 
+import GestaoDashboard from "./pages/GestaoDashboard" 
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import HomeApp from "./pages/HomeApp"
@@ -117,6 +118,13 @@ function App() {
         <Route path="/gestao/cliente" element={
             <ProtectedRoute>
               <GestaoCliente />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/gestao/dashboard" element={
+            <ProtectedRoute>
+              <GestaoDashboard />
             </ProtectedRoute>
           }
         />
