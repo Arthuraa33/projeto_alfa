@@ -6,7 +6,7 @@ function Menu(){
 
     <div className="container">
             
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand">
           <img src="Images/logo.png" alt="" height="28" />
         </a>
 
@@ -23,7 +23,7 @@ function Menu(){
               <Link className="nav-link" to="/cadastro/pedido">Pedido</Link>
             </li>
             <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestão
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -32,7 +32,7 @@ function Menu(){
                             </ul>
             </li>
             <li className="nav-item dropdown">
-                            <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Cadastros
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -51,7 +51,7 @@ function Menu(){
                             </ul>
             </li>
             <li className="nav-item">
-              <a className="nav-link" aria-current="page" href="#footer">Contato</a>
+              <a className="nav-link" aria-current="page">Contato</a>
             </li>
           </ul>
         </div>    
