@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import "../styles/Home.css"
 
 function CadastroAreaVenda() {
-    const [area_venda, setAreaVenda] = useState([]);
+    const [area_nome, setAreaVenda] = useState([]);
 
     const createAreaVenda = (e) => {
         e.preventDefault();
@@ -32,7 +32,7 @@ function CadastroAreaVenda() {
                     name="area_venda"
                     required
                     onChange={(e) => setAreaVenda(e.target.value)}
-                    value={area_venda}
+                    value={area_nome}
                 />
                 <input type="submit" value="Criar"></input>
             </form>
