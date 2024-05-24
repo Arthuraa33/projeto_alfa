@@ -1,50 +1,24 @@
-/* Formulario.css */
-
 .formulario {
-  max-width: 500px;
-  margin: 20px auto;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  margin-top: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 1em;
 }
 
-.formulario label {
-  display: block;
-  margin-bottom: 5px;
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  min-width: 200px; /* Ajuste conforme necessário */
 }
 
-.formulario select,
-.formulario input[type="number"] {
-  width: calc(100% - 22px); /* Subtrai 22px para compensar o padding do seletor */
-  padding: 8px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  box-sizing: border-box; /* Garante que o tamanho inclua o padding e a borda */
+.form-group label {
+  margin-bottom: 0.5em;
 }
 
-.formulario button {
-  background-color: #4caf50;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+.form-group input,
+.form-group select {
+  padding: 0.5em;
+  font-size: 1em;
 }
-
-.formulario button:hover {
-  background-color: #45a049;
-}
-
-/* Estilo do dropdown */
-.formulario select {
-  appearance: none;
-  -webkit-appearance: none; /* Para browsers baseados em Webkit */
-  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M7 10l5 5 5-5H7z" fill="currentColor"/></svg>'); /* Ícone da seta */
-  background-repeat: no-repeat;
-  background-position: right 10px center; /* Posição do ícone */
-  padding-right: 30px; /* Espaço para o ícone */
-}
-

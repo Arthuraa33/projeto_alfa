@@ -1,0 +1,22 @@
+#footer {
+    background-color: #f8f9fa;
+    padding: 20px 0;
+    position: fixed; /* Fixado na parte inferior da página */
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+
+.social .list-inline-item {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social .list-inline-item a {
+    color: #000;
+    text-decoration: none;
+}
+
+.social .list-inline-item a:hover {
+    color: #007bff;
+}
