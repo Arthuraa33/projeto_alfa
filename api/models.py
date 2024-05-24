@@ -20,7 +20,7 @@ class Clientes(models.Model):
     cliente_id = models.AutoField(primary_key=True)
     cliente_nome = models.CharField(null=True, max_length=100)
     contato = models.CharField(null=True, max_length=100)
-    aniversario = models.DateTimeField(null=True)
+    aniversario = models.DateTimeField(null=True) #2024-05-23T23:07:57.357199-03:00
     telefone = models.CharField(null=True, max_length=100)
     email = models.CharField(null=True, max_length=100)
     cnpj = models.CharField(null=True, max_length=100)
@@ -35,6 +35,7 @@ class Clientes(models.Model):
     classificacao_id = models.ForeignKey(ClassificacaoClientes, default=0, on_delete=models.CASCADE)
     observacao = models.TextField(null=True, max_length=200)
     data_cadastro = models.DateTimeField(null=True, auto_now_add=True)
+    print(data_cadastro)
 
     def __str__(self):
         return str(self.cliente_id)

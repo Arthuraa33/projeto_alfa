@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import "../styles/Home.css"
 
 function CadastroClassificacaoCliente() {
-    const [classificacao, setClassificacaoCliente] = useState([]);
+    const [classificacao_nome, setClassificacaoCliente] = useState([]);
 
     const createClassificacaoCliente = (e) => {
         e.preventDefault();
@@ -32,7 +32,7 @@ function CadastroClassificacaoCliente() {
                     name="classificacao"
                     required
                     onChange={(e) => setClassificacaoCliente(e.target.value)}
-                    value={classificacao}
+                    value={classificacao_nome}
                 />
                 <input type="submit" value="Criar"></input>
             </form>
