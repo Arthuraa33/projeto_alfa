@@ -10,7 +10,7 @@ function CadastroStatusTarefas() {
     const createStatusTarefa = (e) => {
         e.preventDefault();
         api
-            .post("/tarefas/statustarefa/", { pedido_fechado, status_descricao })
+            .post("/tarefas/statustarefa/", { pedido_fechado, status_nome })
             .then((res) => {
                 if (res.status === 201) alert("Status de Tarefa Cadastrada!");
                 else alert("Falha em criar a Status de Tarefa.");
