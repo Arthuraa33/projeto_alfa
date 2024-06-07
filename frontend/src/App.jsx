@@ -17,6 +17,11 @@ import CadastroPesquisa from "./pages/CadastroPesquisa"
 import CadastroAreaVenda from "./pages/CadastroAreaVenda"
 import CadastroClassificacaoCliente from "./pages/CadastroClassificacaoCliente"
 import GestaoCliente from "./pages/GestaoCliente" 
+import GestaoDashboard from "./pages/GestaoDashboard" 
+import TarefasKanban from "./pages/Tarefas/TarefasKanban" 
+import CadastroStatusTarefas from "./pages/Tarefas/CadastroStatusTarefas"
+import CadastroTipoTarefas from "./pages/Tarefas/CadastroTipoTarefas"
+import CadastroTarefas from "./pages/Tarefas/CadastroTarefas"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import HomeApp from "./pages/HomeApp"
@@ -117,6 +122,41 @@ function App() {
         <Route path="/gestao/cliente" element={
             <ProtectedRoute>
               <GestaoCliente />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/gestao/dashboard" element={
+            <ProtectedRoute>
+              <GestaoDashboard />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/tarefas/statustarefa" element={
+            <ProtectedRoute>
+              <CadastroStatusTarefas />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/tarefas/tipotarefa" element={
+            <ProtectedRoute>
+              <CadastroTipoTarefas />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/tarefas/tarefa" element={
+            <ProtectedRoute>
+              <CadastroTarefas />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/tarefas/kanban" element={
+            <ProtectedRoute>
+              <TarefasKanban />
             </ProtectedRoute>
           }
         />

@@ -4,8 +4,8 @@ services:
   db:
     container_name: db
     image: postgres:16.1-alpine
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
+    # volumes:
+    #   - ./data/db:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_USER=postgres
@@ -31,6 +31,8 @@ services:
     build:
       context: .
       dockerfile: ./docker/frontend/Dockerfile
+    environment:
+      CHOKIDAR_USEPOLLING: "true"
     ports:
       - "3000:3000"
     volumes:
@@ -53,6 +55,5 @@ services:
       - frontend
 
 volumes:
-  db-data:
   node_modules:
   static:
