@@ -24,6 +24,18 @@ function Menu(){
             </li>
             <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Tarefas
+                            </a>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><Link className="dropdown-item" to="/tarefas/kanban">Kanban</Link></li>
+                                <li><Link className="dropdown-item" to="/tarefas/tarefa">Cadastro Tarefa</Link></li>
+                                <li><Link className="dropdown-item" to="/tarefas/statustarefa">Cadastro Status</Link></li>
+                                <li><Link className="dropdown-item" to="/tarefas/tipotarefa">Cadastro Tipo</Link></li>
+                                
+                            </ul>
+            </li>
+            <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Gestão
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">

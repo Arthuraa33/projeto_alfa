@@ -9,7 +9,7 @@ from api.models import (Clientes,
 class StatusTarefas(models.Model):
     status_tarefa_id = models.AutoField(primary_key=True)
     pedido_fechado = models.BooleanField(default=False)
-    status_descricao = models.CharField(null=True, max_length=100)
+    status_nome = models.CharField(null=True, max_length=100)
     
     def __str__(self):
         return str(self.status_tarefa_id)
@@ -25,13 +25,13 @@ class Tarefas(models.Model):
     tarefa_id = models.AutoField(primary_key=True)
     tarefa_nome = models.CharField(null=True, max_length=100)
     cliente_id = models.ForeignKey(Clientes, default=0, on_delete=models.CASCADE)
-    tipo_tarefa_id = models.ForeignKey(TipoTarefas, default=0, on_delete=models.CASCADE)
     pesquisa_id = models.ForeignKey(Pesquisas, default=0, on_delete=models.CASCADE)
     pedido_id = models.ForeignKey(Pedidos, default=0, on_delete=models.CASCADE)
+    tipo_tarefa_id = models.ForeignKey(TipoTarefas, default=0, on_delete=models.CASCADE)
     status_tarefa_id = models.ForeignKey(StatusTarefas, default=0, on_delete=models.CASCADE)
     outro_motivo_negocio_perdido = models.CharField(null=True, max_length=255)
     criador_tarefa = models.ForeignKey(User, on_delete=models.CASCADE, related_name="responsavel_tarefa")
-    responsavel_tarefa = models.ForeignKey(Vendedores, default=0, on_delete=models.CASCADE)
+    vendedor_id = models.ForeignKey(Vendedores, default=0, on_delete=models.CASCADE)
     inicio_tarefa = models.DateTimeField(null=True)
     fim_tarefa = models.DateTimeField(null=True)
     registro_tarefa = models.DateTimeField(null=True, auto_now_add=True)
