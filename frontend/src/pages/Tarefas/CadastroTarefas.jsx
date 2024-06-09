@@ -12,24 +12,12 @@ function CadastroTarefas() {
     const [tipo_tarefa_nome, setTipoTarefaNome] = useState([]);
     const [tipo_tarefas, setTipoTarefas] = useState([]);
     const [status_tarefa_id, setStatusTarefaId] = useState([]);
-    const [status_tarefa_nome, setStatusTarefaNome] = useState([]);
+    const [status_nome, setStatusTarefaNome] = useState([]);
     const [status_tarefas, setStatusTarefas] = useState([]);
-
-    // const [pesquisa_id, setPesquisaId] = useState(0);
-    // const [pedido_id, setPedidoId] = useState(0);
-
-    const [values, setValues] = useState({
-        pesquisa_id: 0,
-        pedido_id: 0,
-    });
-
     const [outro_motivo_negocio_perdido, setMotivoNegocioPerdido] = useState([]);
-    const [criador_tarefa, setCriadorTarefa] = useState([]);
-    
     const [vendedores, setVendedores] = useState([]);
     const [vendedor_id, setVendedorId] = useState([]);
     const [vendedor_nome, setVendedorNome] = useState([]);
-
     const [inicio_tarefa, setInicioTarefa] = useState([]);
     const [fim_tarefa, setFimTarefa] = useState([]);
 
@@ -40,18 +28,6 @@ function CadastroTarefas() {
         getVendedores();
 
     }, []);
-
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        const parsedValue = parseInt(value, 10);
-
-        if (!isNaN(parsedValue) || value === '') {
-            setValues({
-                ...values,
-                [name]: parsedValue || 0
-            });
-        }
-    };
 
     const getCliente = () => {
         api
@@ -87,7 +63,7 @@ function CadastroTarefas() {
             .then((res) => {
             setStatusTarefas(res.data);
             if (res.data.length > 0) {
-                setStatusTarefaNome(res.data[0].status_tarefa_nome); 
+                setStatusTarefaNome(res.data[0].status_nome); 
             }
             })
             .catch((err) => {
@@ -119,7 +95,7 @@ function CadastroTarefas() {
         const selectedTipoTarefa = tipo_tarefas.find(tipo_tarefa => tipo_tarefa.tipo_tarefa_nome === tipo_tarefa_nome);
         const tipo_tarefa_id = selectedTipoTarefa ? selectedTipoTarefa.tipo_tarefa_id : null;
 
-        const selectedStatusTarefa = status_tarefas.find(status_tarefa => status_tarefa.status_tarefa_nome === status_tarefa_nome);
+        const selectedStatusTarefa = status_tarefas.find(status_tarefa => status_tarefa.status_nome === status_nome);
         const status_tarefa_id = selectedStatusTarefa ? selectedStatusTarefa.status_tarefa_id : null;
 
         const selectedVendedor = vendedores.find(vendedor => vendedor.vendedor_nome === vendedor_nome);
@@ -129,17 +105,14 @@ function CadastroTarefas() {
         const isoFimTarefa = new Date(fim_tarefa).toISOString();
 
         api
-            .post("/tarefas/tarefa/", { tarefa_nome, 
+            .post("/tarefas/tarefa/", { tarefa_nome,
                                         cliente_id,
                                         tipo_tarefa_id,
-                                        pesquisa_id,
-                                        pedido_id,
                                         status_tarefa_id,
                                         outro_motivo_negocio_perdido,
                                         vendedor_id,
-                                        inicio_tarefa,
-                                        fim_tarefa
-                                    
+                                        inicio_tarefa: isoInicioTarefa,
+                                        fim_tarefa: isoFimTarefa                                
                                     })
             .then((res) => {
                 if (res.status === 201) alert("Tarefa Cadastrada!");
@@ -178,30 +151,6 @@ function CadastroTarefas() {
                             </select>
                         </div>
 
-                        <div className="form-group">
-                            <label htmlFor="pesquisa_id">Número da Pesquisa:</label>
-                            <input
-                                type="number"
-                                id="pesquisa_id"
-                                name="pesquisa_id"
-                                required
-                                onChange={handleInputChange}
-                                value={values.pesquisa_id}
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="pedido_id">Número do Pedido:</label>
-                            <input
-                                type="number"
-                                id="pedido_id"
-                                name="pedido_id"
-                                required
-                                onChange={handleInputChange}
-                                value={values.pedido_id}
-                            />
-                        </div>
-
                         <div>
                             <label htmlFor="tipo_tarefa">Tipo da Tarefa:</label>
                             <select 
@@ -225,7 +174,7 @@ function CadastroTarefas() {
                                 value={status_tarefa_id}
                             >
                                 {status_tarefas.map(status_tarefa => (
-                                    <option key={status_tarefa.status_tarefa_id} value={status_tarefa.status_tarefa_id}>{status_tarefa.status_tarefa_nome}</option>
+                                    <option key={status_tarefa.status_tarefa_id} value={status_tarefa.status_tarefa_id}>{status_tarefa.status_nome}</option>
                                 ))}
                             </select>
                         </div>
@@ -279,10 +228,10 @@ function CadastroTarefas() {
                                 value={fim_tarefa}
                             />
                         </div>
-
+                        <input type="submit" value="Submit"></input>
                     </form>
                 </div>
-                <input type="submit" value="Submit"></input>
+                
             
         </div>
     );
