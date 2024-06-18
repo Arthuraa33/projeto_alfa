@@ -34,7 +34,7 @@ function CadastroProduto() {
         e.preventDefault();
         const selectedMarca = marcas.find(marca => marca.marca_nome === marca_nome);
         const marca_id = selectedMarca ? selectedMarca.marca_id : null;
-        console.log({ produto, marca_id, peso_produto, embalagem_produto });
+
         api
             .post("/api/cadastro/produto/", { produto_nome,
                                             marca_id , 

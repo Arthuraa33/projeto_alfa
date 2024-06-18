@@ -1,88 +1,107 @@
-import React, { useState, useEffect, startTransition} from "react";
+import React, { useState, useEffect, startTransition } from "react";
 import { DragDropContext } from "react-beautiful-dnd";
 import Column from "./TarefaColumn";
+import api from "../../api";
 
 export default function Board() {
-    const [completed, setCompleted] = useState([]);
-    const [incomplete, setIncomplete] = useState([]);
-    const [backlog, setBacklog] = useState([]);
-    const [inReview, setInReview] = useState([]);
+    const [columns, setColumns] = useState([]);
+    const [tasks, setTasks] = useState({});
 
     useEffect(() => {
-        fetch("https://jsonplaceholder.typicode.com/todos")
-            .then((response) => response.json())
-            .then((json) => {
-                startTransition(() => {
-                    setCompleted(json.filter((task) => task.completed));
-                    setIncomplete(json.filter((task) => !task.completed));
-            
-                });
-            });
+        getColumn();
+        getTask();
     }, []);
+
+    const getColumn = async () => {
+        try {
+            const res = await api.get("/tarefas/statustarefa/");
+            const columnData = res.data;
+            console.log("Fetched columns:", columnData); // Debugging: Log columns
+            setColumns(columnData);
+
+            // Initialize tasks for each column
+            const tasksInit = {};
+            columnData.forEach(column => {
+                tasksInit[column.status_tarefa_id] = [];
+            });
+            setTasks(tasksInit);
+        } catch (err) {
+            console.error('Erro ao buscar Status:', err);
+        }
+    };
+
+    const getTask = async () => {
+        try {
+            const res = await api.get("/tarefas/tarefa/");
+            const taskData = res.data;
+            console.log("Fetched tasks data:", taskData); // Debugging: Log tasks data
+
+            const tasksByColumn = {};
+            taskData.forEach(task => {
+                if (!tasksByColumn[task.status_tarefa_id]) {
+                    tasksByColumn[task.status_tarefa_id] = [];
+                }
+                tasksByColumn[task.status_tarefa_id].push(task);
+            });
+
+            setTasks(prevTasks => ({
+                ...prevTasks,
+                ...tasksByColumn,
+            }));
+            console.log("Updated tasks state:", tasksByColumn); // Debugging: Log updated tasks state
+        } catch (err) {
+            console.error('Erro ao buscar Tarefas:', err); // Added error logging
+        }
+    };
+
+    const updateTaskStatus = async (taskId, newStatusId) => {
+        try {
+            await api.patch(`/tarefas/tarefa/${taskId}/`, { status_tarefa_id: newStatusId });
+            console.log(`Task ${taskId} updated to status ${newStatusId}`);
+        } catch (error) {
+            console.error(`Error updating task ${taskId}:`, error);
+        }
+    };
 
     const handleDragEnd = (result) => {
         const { destination, source, draggableId } = result;
 
-        if (!destination || source.droppableId === destination.droppableId) return;
+        if (!destination) return;
 
-        deletePreviousState(source.droppableId, draggableId);
+        if (source.droppableId === destination.droppableId && source.index === destination.index) {
+            return;
+        }
 
-        const task = findItemById(draggableId, [...incomplete, ...completed, ...inReview, ...backlog]);
+        startTransition(() => {
+            setTasks(prevTasks => {
+                const sourceTasks = Array.from(prevTasks[source.droppableId]);
+                const destinationTasks = source.droppableId === destination.droppableId ? sourceTasks : Array.from(prevTasks[destination.droppableId]);
 
-        setNewState(destination.droppableId, task);
+                const [movedTask] = sourceTasks.splice(source.index, 1);
+                destinationTasks.splice(destination.index, 0, movedTask);
 
+                const updatedTasks = {
+                    ...prevTasks,
+                    [source.droppableId]: sourceTasks,
+                    [destination.droppableId]: destinationTasks,
+                };
+
+                // Se a tarefa foi movida para uma nova coluna, atualize o status no backend
+                if (source.droppableId !== destination.droppableId) {
+                    updateTaskStatus(movedTask.tarefa_id, destination.droppableId);
+                }
+
+                console.log("Tasks after move:", updatedTasks); // Debugging: Log tasks after move
+                return updatedTasks;
+            });
+        });
     };
 
-    function deletePreviousState(sourceDroppableId, taskId) {
-        switch (sourceDroppableId) {
-            case "1":
-                setIncomplete(removeItemById(taskId, incomplete));
-                break;
-            case "2":
-                setCompleted(removeItemById(taskId, completed));
-                break;
-            case "3":
-                setInReview(removeItemById(taskId, inReview));
-                break;
-            case "4":
-                setBacklog(removeItemById(taskId, backlog));
-                break;
-        }
-
-    }
-    function setNewState(destinationDroppableId, task) {
-        let updatedTask;
-        switch (destinationDroppableId) {
-            case "1":   // TO DO
-                updatedTask = { ...task, completed: false };
-                setIncomplete([updatedTask, ...incomplete]);
-                break;
-            case "2":  // DONE
-                updatedTask = { ...task, completed: true };
-                setCompleted([updatedTask, ...completed]);
-                break;
-            case "3":  // IN REVIEW
-                updatedTask = { ...task, completed: false };
-                setInReview([updatedTask, ...inReview]);
-                break;
-            case "4":  // BACKLOG
-                updatedTask = { ...task, completed: false };
-                setBacklog([updatedTask, ...backlog]);
-                break;
-        }
-    }
-    function findItemById(id, array) {
-        return array.find((item) => item.id == id);
-    }
-
-    function removeItemById(id, array) {
-        return array.filter((item) => item.id != id);
-    }
+    console.log("Rendered tasks state:", tasks); // Debugging: Log rendered tasks state
 
     return (
         <DragDropContext onDragEnd={handleDragEnd}>
             <h2 style={{ textAlign: "center" }}>PROGRESS BOARD</h2>
-
             <div
                 style={{
                     display: "flex",
@@ -90,13 +109,17 @@ export default function Board() {
                     alignItems: "center",
                     flexDirection: "row",
                     width: "1300px",
-                    margin: "0 auto"
+                    margin: "0 auto",
                 }}
             >
-                <Column title={"TO DO"} tasks={incomplete} id={"1"} />
-                <Column title={"DONE"} tasks={completed} id={"2"} />
-                <Column title={"IN REVIEW"} tasks={inReview} id={"3"} />
-                <Column title={"BACKLOG"} tasks={backlog} id={"4"} />
+                {columns.map((column) => (
+                    <Column
+                        key={column.status_tarefa_id}
+                        title={column.status_nome}
+                        tasks={tasks[column.status_tarefa_id] || []}
+                        id={column.status_tarefa_id}
+                    />
+                ))}
             </div>
         </DragDropContext>
     );
