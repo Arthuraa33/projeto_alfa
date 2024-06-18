@@ -1,11 +1,9 @@
-import React, {Suspense, lazy} from "react";
+import React, { Suspense, lazy } from "react";
 import styled from "styled-components";
 import Card from "./TarefaCard";
 import "../../styles/scroll.css";
-// import { Droppable } from "react-beautiful-dnd";
 
 const Droppable = lazy(() => import("react-beautiful-dnd").then(module => ({ default: module.Droppable })));
-
 
 const Container = styled.div`
     background-color: #f4f5f7;
@@ -26,7 +24,7 @@ const Title = styled.h3`
 
 const TaskList = styled.div`
     padding: 3px;
-    transistion: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
     background-color: #f4f5f7;
     flex-grow: 1;
     min-height: 100px;
@@ -44,20 +42,22 @@ export default function Column({ title, tasks, id }) {
             >
                 {title}
             </Title>
-            <Droppable droppableId={id}>
-                {(provided, snapshot) => (
-                    <TaskList
-                        ref={provided.innerRef}
-                        {...provided.droppableProps}
-                        isDraggingOver={snapshot.isDraggingOver}
-                    >
-                        {tasks.map((task, index) => (
-                            <Card key={index} index={index} task={task} />
-                        ))}
-                        {provided.placeholder}
-                    </TaskList>
-                )}
-            </Droppable>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Droppable droppableId={id}>
+                    {(provided, snapshot) => (
+                        <TaskList
+                            ref={provided.innerRef}
+                            {...provided.droppableProps}
+                            isDraggingOver={snapshot.isDraggingOver}
+                        >
+                            {tasks.map((task, index) => (
+                                <Card key={task.tarefa_id} index={index} task={task} />
+                            ))}
+                            {provided.placeholder}
+                        </TaskList>
+                    )}
+                </Droppable>
+            </Suspense>
         </Container>
     );
 }

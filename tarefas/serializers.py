@@ -3,10 +3,15 @@ from rest_framework import serializers
 from .models import Tarefas, TipoTarefas, StatusTarefas, TarefasAtividades
 
 class TarefasSerializer(serializers.ModelSerializer):
+    cliente_nome = serializers.SerializerMethodField()
+
     class Meta:
         model = Tarefas
         fields = '__all__'
-        read_only_fields = ('criador_tarefa',)
+        read_only_fields = ('criador_tarefa', 'cliente_nome')
+    
+    def get_cliente_nome(self, obj):
+        return obj.cliente_id.cliente_nome
 
 class TarefasUpdateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -21,7 +26,6 @@ class TarefasUpdateSerializer(serializers.ModelSerializer):
         instance.pedido_id = validated_data.get('pedido_id', instance.pedido_id)
         instance.status_tarefa_id = validated_data.get('status_tarefa_id', instance.status_tarefa_id)
         instance.outro_motivo_negocio_perdido = validated_data.get('outro_motivo_negocio_perdido', instance.outro_motivo_negocio_perdido)
-        instance.responsavel_tarefa = validated_data.get('responsavel_tarefa', instance.responsavel_tarefa)
         instance.inicio_tarefa = validated_data.get('inicio_tarefa', instance.inicio_tarefa)
         instance.fim_tarefa = validated_data.get('fim_tarefa', instance.fim_tarefa)
 
