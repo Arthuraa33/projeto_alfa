@@ -29,15 +29,19 @@ class UserSerializer(serializers.ModelSerializer):
         return user
 
 class ClientesSerializer(serializers.ModelSerializer):
+<<<<<<< HEAD
     class Meta:
         model = Clientes
         fields = '__all__'
 
 class ClientesUpdateSerializer(serializers.ModelSerializer):
+=======
+>>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
     class Meta:
         model = Clientes
         fields = '__all__'
 
+<<<<<<< HEAD
     def update(self, instance, validated_data):
 
         instance.cliente_nome = validated_data.get('cliente_nome', instance.cliente_nome)
@@ -60,11 +64,14 @@ class ClientesUpdateSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+=======
+>>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
 class AreasVendaSerializer(serializers.ModelSerializer):
     class Meta:
         model = AreasVenda
         fields = '__all__'
 
+<<<<<<< HEAD
 class AreasVendaUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = AreasVenda
@@ -76,11 +83,14 @@ class AreasVendaUpdateSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+=======
+>>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
 class ClassificacaoClientesSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClassificacaoClientes
         fields = '__all__'
 
+<<<<<<< HEAD
 class ClassificacaoClientesUpdateSerializer(serializers.ModelSerializer):
     class Meta:
         model = ClassificacaoClientes
@@ -92,6 +102,8 @@ class ClassificacaoClientesUpdateSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+=======
+>>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
 class MarcasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Marcas

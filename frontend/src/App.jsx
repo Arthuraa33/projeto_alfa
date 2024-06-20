@@ -59,6 +59,18 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/cadastro/areavenda" element={
+            <ProtectedRoute>
+              <CadastroAreaVenda />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/cadastro/classificacaocliente" element={
+            <ProtectedRoute>
+              <CadastroClassificacaoCliente />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/cadastro/fornecedor" element={
             <ProtectedRoute>
               <CadastroFornecedor />
