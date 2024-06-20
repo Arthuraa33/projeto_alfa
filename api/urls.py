@@ -56,6 +56,8 @@ urlpatterns = [
     path("gestao/pesquisa/<int:pk>/", views.PesquisasDetail.as_view(), name='pesquisas-detail'),
     path("gestao/pesquisa/", views.PesquisasList.as_view(), name="gestao-pesquisa"), 
     path("cadastro/pesquisa/", views.PesquisasListCreate.as_view(), name="pesquisa-list"),
+    path("cadastro/areavenda/", views.AreaVendaListCreate.as_view(), name="area-list"),
+    path("cadastro/classificacaocliente/", views.ClassificacaoClientesListCreate.as_view(), name="area-list"),
 
     path("gestao/areavenda/delete/<int:pk>/", views.AreasVendaDelete.as_view(), name="delete-areavenda"),
     path("gestao/areavenda/<int:pk>/", views.AreasVendaDetail.as_view(), name='areasVenda-detail'),
