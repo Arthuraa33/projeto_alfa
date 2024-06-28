@@ -36,7 +36,6 @@ function CadastroAreaVenda() {
                 />
                 <input type="submit" value="Criar"></input>
             </form>
-            <Footer/>
         </div>
     );
 }

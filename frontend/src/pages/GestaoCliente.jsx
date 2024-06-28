@@ -43,7 +43,6 @@ function GestaoCliente() {
                     <Cliente cliente={cliente} onDelete={deleteCliente} key={cliente.cliente_id} />
                 ))}
             </div>
-            <Footer/>
         </div>
     );
 }

@@ -36,6 +36,7 @@ function CadastroVendedor() {
                     id="vendedor_nome"
                     name="vendedor_nome"
                     required
+                    placeholder="Digite o nome do vendedor"
                     onChange={(e) => setVendedorNome(e.target.value)}
                     value={vendedor_nome}
                 />
@@ -46,6 +47,7 @@ function CadastroVendedor() {
                     id="area_vendedor"
                     name="area_vendedor"
                     required
+                    placeholder="Área do vendendor"
                     onChange={(e) => setAreaVendedor(e.target.value)}
                     value={area_vendedor}
                 />
@@ -56,12 +58,12 @@ function CadastroVendedor() {
                     id="comissao_padrao_percentual"
                     name="comissao_padrao_percentual"
                     required
+                    placeholder="Digite a comissão"
                     onChange={(e) => setComissaoPadrao(e.target.value)}
                     value={comissao_padrao_percentual}
                 />
                 <input type="submit" value="Submit"></input>
             </form>
-            <Footer/>
         </div>
     );
 }

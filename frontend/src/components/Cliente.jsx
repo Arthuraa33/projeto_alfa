@@ -3,6 +3,7 @@ import "../styles/Client.css";
 
 function Cliente({ cliente, onDelete, onUpdate }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalVisibleOpen, setIsModalVisibleOpen] = useState(false);
     const [editCliente, setEditCliente] = useState(cliente);
 
     const handleChange = (e) => {
@@ -13,6 +14,7 @@ function Cliente({ cliente, onDelete, onUpdate }) {
     const handleUpdate = () => {
         onUpdate(editCliente);
         setIsModalOpen(false);
+        setIsModalVisibleOpen(false);
     };
 
     return (
@@ -23,15 +25,6 @@ function Cliente({ cliente, onDelete, onUpdate }) {
                         <th>ID</th>
                         <th>Nome</th>
                         <th>Contato</th>
-                        {/* <th>Aniversário</th>
-                        <th>Telefone</th>
-                        <th>Email</th>
-                        <th>CNPJ</th>
-                        <th>Rua</th>
-                        <th>Número</th>
-                        <th>Complemento</th>
-                        <th>Ponto de Referência</th>
-                        <th>Bairro</th> */}
                         <th>Cidade</th>
                         <th>Estado</th>
                         <th>Observação</th>
@@ -43,15 +36,6 @@ function Cliente({ cliente, onDelete, onUpdate }) {
                         <td>{cliente.cliente_id}</td>
                         <td>{cliente.cliente_nome}</td>
                         <td>{cliente.contato}</td>
-                        {/* <td>{cliente.aniversario}</td>
-                        <td>{cliente.telefone}</td>
-                        <td>{cliente.email}</td>
-                        <td>{cliente.cnpj}</td>
-                        <td>{cliente.rua}</td>
-                        <td>{cliente.numero_rua}</td>
-                        <td>{cliente.complemento_rua}</td>
-                        <td>{cliente.ponto_referencia}</td>
-                        <td>{cliente.bairro}</td> */}
                         <td>{cliente.cidade}</td>
                         <td>{cliente.estado}</td>
                         <td>{cliente.observacao}</td>
@@ -62,7 +46,7 @@ function Cliente({ cliente, onDelete, onUpdate }) {
                             <button className="delete-button" onClick={() => onDelete(cliente.cliente_id)}>
                                 Excluir
                             </button>
-                            <button className="more-button">
+                            <button className="more-button" onClick={() => setIsModalVisibleOpen(true)}> 
                                 Visualizar
                             </button>
                         </td>
@@ -124,6 +108,77 @@ function Cliente({ cliente, onDelete, onUpdate }) {
                             <button type="button" onClick={handleUpdate}>
                                 Salvar
                             </button>
+                        </form>
+                    </div>
+                </div>
+            )}
+
+            {isModalVisibleOpen && (
+                <div className="modal" onClick={() => setIsModalVisibleOpen(false)}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <span className="close" onClick={() => setIsModalVisibleOpen(false)}>&times;</span>
+                        <h2>Visualizar Cliente</h2>
+                        <form>
+                            <div>
+                                <label>ID:</label>
+                                <span>{editCliente.cliente_id}</span>
+                            </div>
+                            <div>
+                                <label>Nome:</label>
+                                <span>{editCliente.cliente_nome}</span>
+                            </div>
+                            <div>
+                                <label>Contato:</label>
+                                <span>{editCliente.contato}</span>
+                            </div>
+                            <div>
+                                <label>Aniversário:</label>
+                                <span>{editCliente.aniversario}</span>
+                            </div>
+                            <div>
+                                <label>Telefone:</label>
+                                <span>{editCliente.telefone}</span>
+                            </div>
+                            <div>
+                                <label>Email:</label>
+                                <span>{editCliente.email}</span>
+                            </div>
+                            <div>
+                                <label>CNPJ:</label>
+                                <span>{editCliente.cnpj}</span>
+                            </div>
+                            <div>
+                                <label>Rua:</label>
+                                <span>{editCliente.rua}</span>
+                            </div>
+                            <div>
+                                <label>Número:</label>
+                                <span>{editCliente.numero_rua}</span>
+                            </div>
+                            <div>
+                                <label>Complemento:</label>
+                                <span>{editCliente.complemento_rua}</span>
+                            </div>
+                            <div>
+                                <label>Ponto de Referência:</label>
+                                <span>{editCliente.ponto_referencia}</span>
+                            </div>
+                            <div>
+                                <label>Bairro:</label>
+                                <span>{editCliente.bairro}</span>
+                            </div>
+                            <div>
+                                <label>Cidade:</label>
+                                <span>{editCliente.cidade}</span>
+                            </div>
+                            <div>
+                                <label>Estado:</label>
+                                <span>{editCliente.estado}</span>
+                            </div>
+                            <div>
+                                <label>Observação:</label>
+                                <span>{editCliente.observacao}</span>
+                            </div>
                         </form>
                     </div>
                 </div>

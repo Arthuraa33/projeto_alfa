@@ -113,6 +113,7 @@ function CadastroCliente() {
                             id="cliente_nome"
                             name="cliente_nome"
                             required
+                            placeholder="Digite o nome do cliente"
                             onChange={(e) => setNome(e.target.value)}
                             value={cliente_nome}
                         />
@@ -124,12 +125,13 @@ function CadastroCliente() {
                             id="contato"
                             name="contato"
                             required
+                            placeholder="Digite o contato"
                             onChange={(e) => setContato(e.target.value)}
                             value={contato}
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="aniversario">Aniversário:</label>
+                        <label htmlFor="aniversario">Data de nascimento:</label>
                         <input
                             type="date"
                             id="aniversario"
@@ -146,6 +148,7 @@ function CadastroCliente() {
                             id="telefone"
                             name="telefone"
                             required
+                            placeholder="Digite o telefone"
                             onChange={(e) => setTelefone(e.target.value)}
                             value={telefone}
                         />
@@ -157,6 +160,7 @@ function CadastroCliente() {
                             id="email"
                             name="email"
                             required
+                            placeholder="Digite o email"
                             onChange={(e) => setEmail(e.target.value)}
                             value={email}
                         />
@@ -168,6 +172,7 @@ function CadastroCliente() {
                             id="cnpj"
                             name="cnpj"
                             required
+                            placeholder="Digite o CNPJ"
                             onChange={(e) => setCnpj(e.target.value)}
                             value={cnpj}
                         />
@@ -179,6 +184,7 @@ function CadastroCliente() {
                             id="rua"
                             name="rua"
                             required
+                            placeholder="Digite a Rua ou Avenida"
                             onChange={(e) => setRua(e.target.value)}
                             value={rua}
                         />
@@ -190,6 +196,7 @@ function CadastroCliente() {
                             id="numero_rua"
                             name="numero_rua"
                             required
+                            placeholder="Número"
                             onChange={(e) => setNumero_rua(e.target.value)}
                             value={numero_rua}
                         />
@@ -201,6 +208,7 @@ function CadastroCliente() {
                             id="complemento_rua"
                             name="complemento_rua"
                             required
+                            placeholder="Digite o complemento"
                             onChange={(e) => setComplemento_rua(e.target.value)}
                             value={complemento_rua}
                         />
@@ -212,6 +220,7 @@ function CadastroCliente() {
                             id="ponto_referencia"
                             name="ponto_referencia"
                             required
+                            placeholder="Digite o ponto de referência"
                             onChange={(e) => setPonto_referencia(e.target.value)}
                             value={ponto_referencia}
                         />
@@ -223,6 +232,7 @@ function CadastroCliente() {
                             id="bairro"
                             name="bairro"
                             required
+                            placeholder="Digite o bairro"
                             onChange={(e) => setBairro(e.target.value)}
                             value={bairro}
                         />
@@ -234,6 +244,7 @@ function CadastroCliente() {
                             id="cidade"
                             name="cidade"
                             required
+                            placeholder="Digite a Cidade"
                             onChange={(e) => setCidade(e.target.value)}
                             value={cidade}
                         />
@@ -245,6 +256,7 @@ function CadastroCliente() {
                             id="estado"
                             name="estado"
                             required
+                            placeholder="Digite o Estado"
                             onChange={(e) => setEstado(e.target.value)}
                             value={estado}
                         />
@@ -289,6 +301,7 @@ function CadastroCliente() {
                             id="observacao"
                             name="observacao"
                             required
+                            placeholder="Digite a observação"
                             onChange={(e) => setObservacao(e.target.value)}
                             value={observacao}
                         />

@@ -38,6 +38,7 @@ function CadastroTipoTransporte() {
                     id="tipo_transporte_nome"
                     name="tipo_transporte_nome"
                     required
+                    placeholder="Digite o tipo de transporte"
                     onChange={(e) => setTipoTransporte(e.target.value)}
                     value={tipo_transporte_nome}
                 />
@@ -48,6 +49,7 @@ function CadastroTipoTransporte() {
                     id="cif"
                     name="cif"
                     required
+                    placeholder="Digite o CIF"
                     onChange={(e) => setCif(e.target.value)}
                     value={cif}
                 />
@@ -58,6 +60,7 @@ function CadastroTipoTransporte() {
                     id="fob"
                     name="fob"
                     required
+                    placeholder="Digite o FOB"
                     onChange={(e) => setFob(e.target.value)}
                     value={fob}
                 />
@@ -68,12 +71,12 @@ function CadastroTipoTransporte() {
                     id="carregamento"
                     name="carregamento"
                     required
+                    placeholder="Digite a carregamento"
                     onChange={(e) => setCarregamento(e.target.value)}
                     value={carregamento}
                 />
                 <input type="submit" value="Submit"></input>
             </form>
-            <Footer/>
         </div>
     );
 }

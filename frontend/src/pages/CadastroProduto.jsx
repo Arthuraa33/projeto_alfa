@@ -60,6 +60,7 @@ function CadastroProduto() {
                         id="produto_nome"
                         name="produto_nome"
                         required
+                        placeholder="Digite o nome do produto"
                         onChange={(e) => setProduto(e.target.value)}
                         value={produto_nome}
                     />
@@ -83,23 +84,24 @@ function CadastroProduto() {
                         id="peso_produto"
                         name="peso_produto"
                         required
+                        placeholder="Digite o peso do produto"
                         onChange={(e) => setPeso(e.target.value)}
                         value={peso_produto}
                     />
-                    <label htmlFor="embalagem_produto">Emabalagem Produto:</label>
+                    <label htmlFor="embalagem_produto">Embalagem Produto:</label>
                     <br />
                     <input
                         type="text"
                         id="embalagem_produto"
                         name="embalagem_produto"
                         required
+                        placeholder="Digite a embalagem do produto"
                         onChange={(e) => setEmbalagem(e.target.value)}
                         value={embalagem_produto}
                     />
                     <input type="submit" value="Submit"></input>
                 </form>
             </div>
-            <Footer/>
         </div>
     );
 }
