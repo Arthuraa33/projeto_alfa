@@ -36,7 +36,6 @@ function CadastroClassificacaoCliente() {
                 />
                 <input type="submit" value="Criar"></input>
             </form>
-            <Footer/>
         </div>
     );
 }

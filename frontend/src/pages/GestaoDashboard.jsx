@@ -14,7 +14,6 @@ function GestaoDashboard() {
             <div>
                 <DashboardTeste/>
             </div>
-            <Footer/>
         </div>
     );
 }

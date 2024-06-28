@@ -38,6 +38,7 @@ function CadastroTransporte() {
                     id="transporte_nome"
                     name="transporte_nome"
                     required
+                    placeholder="Digite o transporte"
                     onChange={(e) => setTransporte(e.target.value)}
                     value={transporte_nome}
                 />
@@ -48,6 +49,7 @@ function CadastroTransporte() {
                     id="capacidade_kg"
                     name="capacidade_kg"
                     required
+                    placeholder="Digite a capacidade"
                     onChange={(e) => setCapacidadeKg(e.target.value)}
                     value={capacidade_kg}
                 />
@@ -58,6 +60,7 @@ function CadastroTransporte() {
                     id="capacidade_un"
                     name="capacidade_un"
                     required
+                    placeholder="Digite a capacidade em UN"
                     onChange={(e) => setCapacidadeUn(e.target.value)}
                     value={capacidade_un}
                 />
@@ -68,12 +71,12 @@ function CadastroTransporte() {
                     id="preco_km"
                     name="preco_km"
                     required
+                    placeholder="Digite a embalagem de transporte"
                     onChange={(e) => setPrecoKm(e.target.value)}
                     value={preco_km}
                 />
                 <input type="submit" value="Enviar"></input>
             </form>
-            <Footer/>
         </div>
     );
 }

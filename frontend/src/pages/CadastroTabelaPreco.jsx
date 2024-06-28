@@ -127,7 +127,6 @@ function CadastroTabelaPreco() {
                     <input type="submit" value="Submit"></input>
                 </form>
             </div>
-            <Footer/>
         </div>
     );
 }

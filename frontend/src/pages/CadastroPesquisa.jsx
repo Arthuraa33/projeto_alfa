@@ -204,7 +204,6 @@ function CadastroPedido() {
                         <input type="submit" value="Enviar"></input>
                     </form>
                 </div>
-                <Footer/>
             </div>
     );
 }
