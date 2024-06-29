@@ -5,11 +5,6 @@ class AreasVenda(models.Model):
     area_id = models.AutoField(primary_key=True)
     area_nome = models.CharField(null=True, max_length=100)
 
-<<<<<<< HEAD
-class AreasVenda(models.Model):
-    area_id = models.AutoField(primary_key=True)
-    area_nome = models.CharField(null=True, max_length=100)
-
     def __str__(self):
         return str(self.area_id)
 
@@ -18,16 +13,6 @@ class ClassificacaoClientes(models.Model):
     classificacao_nome = models.CharField(null=True, max_length=100)
 
     def __str__(self):
-=======
-    def __str__(self):
-        return str(self.area_id)
-
-class ClassificacaoClientes(models.Model):
-    classificacao_id = models.AutoField(primary_key=True)
-    classificacao_nome = models.CharField(null=True, max_length=100)
-
-    def __str__(self):
->>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
         return str(self.classificacao_id)
 
 class Clientes(models.Model):
@@ -45,13 +30,8 @@ class Clientes(models.Model):
     bairro = models.CharField(null=True, max_length=100)
     cidade = models.CharField(null=True, max_length=100)
     estado = models.CharField(null=True, max_length=100)
-<<<<<<< HEAD
     area_id = models.ForeignKey(AreasVenda, default=0, on_delete=models.CASCADE)
     classificacao_id = models.ForeignKey(ClassificacaoClientes, default=0, on_delete=models.CASCADE)
-=======
-    area_id = models.ForeignKey(AreasVenda, on_delete=models.CASCADE)
-    classificacao_id = models.ForeignKey(ClassificacaoClientes, on_delete=models.CASCADE)
->>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
     observacao = models.TextField(null=True, max_length=200)
     data_cadastro = models.DateTimeField(null=True, auto_now_add=True)
     print(data_cadastro)
@@ -81,11 +61,7 @@ class Transportes(models.Model):
     transporte_nome = models.CharField(null=True, max_length=100)
     capacidade_kg = models.FloatField()
     capacidade_un = models.IntegerField()
-<<<<<<< HEAD
-    preco_km = models.FloatField(null=True, default=0)
-=======
     preco_km = models.FloatField(null=True)
->>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
 
     def __str__(self):
         return str(self.transporte_id)
@@ -150,13 +126,9 @@ class Pedidos(models.Model):
     vendedor_id = models.ForeignKey(Vendedores, on_delete=models.CASCADE)
     pedido_comissao= models.FloatField(null=True)
     pedido_quantidade = models.IntegerField(null=True)
-<<<<<<< HEAD
     pedido_data = models.DateTimeField(null=True)
     pedido_condicao_pagamento = models.CharField(null=True, max_length=100)
     pedido_valor = models.FloatField(null=True)
-=======
-    pedido_preco = models.FloatField(null=True)
->>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
 
     def __str__(self):
         return str(self.pedido_id)

@@ -4,16 +4,11 @@ from django.contrib.auth.models import User
 from rest_framework import generics
 from .serializers import (UserSerializer, 
                           ClientesSerializer,
-<<<<<<< HEAD
                           ClientesUpdateSerializer,
                           AreasVendaSerializer,
                           AreasVendaUpdateSerializer,
                           ClassificacaoClientesSerializer,
                           ClassificacaoClientesUpdateSerializer,
-=======
-                          AreasVendaSerializer,
-                          ClassificacaoClientesSerializer,
->>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
                           MarcasSerializer, 
                           MarcasUpdateSerializer,
                           ProdutosSerializer,
@@ -82,7 +77,6 @@ class MarcasListCreate(generics.ListCreateAPIView):
     serializer_class = MarcasSerializer
     permission_classes = [IsAuthenticated]
 
-<<<<<<< HEAD
 class MarcasList(generics.ListCreateAPIView):
     queryset = Marcas.objects.all()
     serializer_class = MarcasSerializer
@@ -109,27 +103,20 @@ class AreasVendaList(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
 class AreasVendaDelete(generics.DestroyAPIView):
-=======
-class AreaVendaListCreate(generics.ListCreateAPIView):
->>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
     queryset = AreasVenda.objects.all()
     serializer_class = AreasVendaSerializer
     permission_classes = [IsAuthenticated]
 
-<<<<<<< HEAD
 class AreasVendaDetail(generics.RetrieveUpdateAPIView):
     queryset = AreasVenda.objects.all()
     serializer_class = AreasVendaUpdateSerializer
     permission_classes = [IsAuthenticated]
 
-=======
->>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
 class ClassificacaoClientesListCreate(generics.ListCreateAPIView):
     queryset = ClassificacaoClientes.objects.all()
     serializer_class = ClassificacaoClientesSerializer
     permission_classes = [IsAuthenticated]
 
-<<<<<<< HEAD
 class ClassificacaoClientesList(generics.ListCreateAPIView):
     queryset = ClassificacaoClientes.objects.all()
     serializer_class = ClassificacaoClientesSerializer
@@ -145,8 +132,6 @@ class ClassificacaoClientesDetail(generics.RetrieveUpdateAPIView):
     serializer_class = ClassificacaoClientesUpdateSerializer
     permission_classes = [IsAuthenticated]
 
-=======
->>>>>>> 7d15b4887efdc979d28730cc9728cc6e9fa9ca54
 class ProdutosListCreate(generics.ListCreateAPIView):
     queryset = Produtos.objects.all()
     serializer_class = ProdutosSerializer
