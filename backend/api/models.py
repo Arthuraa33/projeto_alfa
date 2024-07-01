@@ -34,7 +34,6 @@ class Clientes(models.Model):
     classificacao_id = models.ForeignKey(ClassificacaoClientes, default=0, on_delete=models.CASCADE)
     observacao = models.TextField(null=True, max_length=200)
     data_cadastro = models.DateTimeField(null=True, auto_now_add=True)
-    print(data_cadastro)
 
     def __str__(self):
         return str(self.cliente_id)
