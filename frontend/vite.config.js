@@ -4,6 +4,9 @@ import react from '@vitejs/plugin-react'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  server: {
+    host: true, // to expose to the network
+  }
   // resolve: {
   //   alias: {
   //     'react-google-charts': 'react-google-charts',

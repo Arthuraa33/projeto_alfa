@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "dev-exposed": "vite --host",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "deploy": "npm run build && serve -s dist"
@@ -23,6 +24,7 @@
     "ant": "^0.2.0",
     "antd": "^5.13.3",
     "styled-components": "^6.1.8",
+    "react-scripts": "^4.0.0",
     "react-beautiful-dnd": "^13.1.1"
   },
   "devDependencies": {

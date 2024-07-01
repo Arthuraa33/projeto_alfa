@@ -22,6 +22,9 @@ function Menu(){
             <li className="nav-item">
               <Link className="nav-link" to="/cadastro/pedido">Pedido</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/gestao/dashboard">Dashboards</Link>
+            </li>
             <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Tarefas
@@ -36,11 +39,12 @@ function Menu(){
             </li>
             <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                Gestão
+                                Gestão Cadastros
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><Link className="dropdown-item" to="/gestao/cliente">Cliente</Link></li>
-                                <li><Link className="dropdown-item" to="/gestao/dashboard">Dashboard</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/fornecedor">Fornecedor</Link></li>
+                                
                                 
                             </ul>
             </li>

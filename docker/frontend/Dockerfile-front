@@ -1,0 +1,22 @@
+FROM node:alpine
+
+WORKDIR /frontend
+
+# COPY ./frontend .
+# COPY ./frontend .
+# COPY . .
+
+COPY ./frontend/package.json .
+COPY ./frontend/package-lock.json .
+
+COPY ./frontend .
+
+RUN npm i react-beautiful-dnd
+RUN npm install --save react-google-charts
+RUN npm install
+RUN npm install -g serve
+
+EXPOSE 5173
+
+# CMD [ "npm", "run", "deploy" ]
+CMD [ "npm", "run", "dev-exposed" ]

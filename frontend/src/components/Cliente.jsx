@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../styles/Client.css";
+import "../styles/GestaoCadastro.css";
 
 function Cliente({ cliente, onDelete, onUpdate }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -18,28 +18,28 @@ function Cliente({ cliente, onDelete, onUpdate }) {
     };
 
     return (
-        <div className="client-container">
+        <div className="gestao-cadastro-container">
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th style={{ width: '5%' }}>ID</th>
                         <th>Nome</th>
                         <th>Contato</th>
                         <th>Cidade</th>
                         <th>Estado</th>
                         <th>Observação</th>
-                        <th></th>
+                        <th style={{ width: '9%' }}></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{cliente.cliente_id}</td>
+                        <td style={{ width: '5%' }} >{cliente.cliente_id}</td>
                         <td>{cliente.cliente_nome}</td>
                         <td>{cliente.contato}</td>
                         <td>{cliente.cidade}</td>
                         <td>{cliente.estado}</td>
                         <td>{cliente.observacao}</td>
-                        <td> 
+                        <td style={{ width: '9%' }}> 
                             <button className="edit-button" onClick={() => setIsModalOpen(true)}>
                                 Editar
                             </button>
@@ -101,7 +101,13 @@ function Cliente({ cliente, onDelete, onUpdate }) {
                             
                             <label>Estado</label>
                             <input type="text" name="estado" value={editCliente.estado} onChange={handleChange} />
+
+                            <label>Área de Venda</label>
+                            <input type="text" name="area_id" value={editCliente.area_id} onChange={handleChange} />
                             
+                            <label>Classificação Cliente</label>
+                            <input type="text" name="classificacao_id" value={editCliente.classificacao_id} onChange={handleChange} />
+
                             <label>Observação</label>
                             <input type="text" name="observacao" value={editCliente.observacao} onChange={handleChange} />
 
@@ -174,6 +180,14 @@ function Cliente({ cliente, onDelete, onUpdate }) {
                             <div>
                                 <label>Estado:</label>
                                 <span>{editCliente.estado}</span>
+                            </div>
+                            <div>
+                                <label>Área de Venda:</label>
+                                <span>{editCliente.area_id}</span>
+                            </div>
+                            <div>
+                                <label>Classificação do Cliente:</label>
+                                <span>{editCliente.classificacao_id}</span>
                             </div>
                             <div>
                                 <label>Observação:</label>

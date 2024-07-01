@@ -25,6 +25,7 @@ import CadastroTarefas from "./pages/Tarefas/CadastroTarefas"
 import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import HomeApp from "./pages/HomeApp"
+import GestaoFornecedor from "./pages/GestaoCadastros/GestaoFornecedor"
 
 
 function Logout() {
@@ -138,12 +139,19 @@ function App() {
           }
         />
 
+        <Route path="/gestao/fornecedor" element={
+            <ProtectedRoute>
+              <GestaoFornecedor />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/gestao/dashboard" element={
             <ProtectedRoute>
               <GestaoDashboard />
             </ProtectedRoute>
           }
-        />
+        />     
 
         <Route path="/tarefas/statustarefa" element={
             <ProtectedRoute>
