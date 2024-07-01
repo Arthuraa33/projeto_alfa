@@ -2,21 +2,21 @@ FROM node:alpine
 
 WORKDIR /frontend
 
-# COPY ./frontend .
-# COPY ./frontend .
-# COPY . .
+# Copy package.json and package-lock.json first to leverage Docker layer caching
+COPY ./frontend/package.json ./frontend/package-lock.json ./
 
-COPY ./frontend/package.json .
-COPY ./frontend/package-lock.json .
+# Install dependencies
+RUN npm install
 
+# Copy the rest of the frontend files
 COPY ./frontend .
 
-RUN npm i react-beautiful-dnd
-RUN npm install --save react-google-charts
-RUN npm install
-RUN npm install -g serve
+# Install additional dependencies if needed (they should ideally be part of package.json)
+# RUN npm install react-beautiful-dnd react-google-charts serve
+# RUN npm install react-beautiful-dnd
 
+# Expose the Vite default port
 EXPOSE 5173
 
-# CMD [ "npm", "run", "deploy" ]
-CMD [ "npm", "run", "dev-exposed" ]
+# Set the default command to run the dev-exposed script
+CMD ["npm", "run", "dev-exposed"]
