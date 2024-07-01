@@ -54,11 +54,18 @@ export default function Board() {
         startTransition(() => {
             setTasks(prevTasks => {
                 const sourceTasks = Array.from(prevTasks[source.droppableId]);
-                const destinationTasks = source.droppableId === destination.droppableId ? sourceTasks : Array.from(prevTasks[destination.droppableId]);
-
+                let destinationTasks;
+    
+                if (source.droppableId === destination.droppableId) {
+                    destinationTasks = sourceTasks;
+                } else {
+                    // Check if destination exists in prevTasks
+                    destinationTasks = prevTasks[destination.droppableId] ? Array.from(prevTasks[destination.droppableId]) : [];
+                }
+    
                 const [movedTask] = sourceTasks.splice(source.index, 1);
                 destinationTasks.splice(destination.index, 0, movedTask);
-
+    
                 const updatedTasks = {
                     ...prevTasks,
                     [source.droppableId]: sourceTasks,
