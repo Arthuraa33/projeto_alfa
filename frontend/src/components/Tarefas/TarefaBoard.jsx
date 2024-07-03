@@ -8,51 +8,30 @@ export default function Board() {
     const [tasks, setTasks] = useState({});
 
     useEffect(() => {
-        getColumn();
-        getTask();
+        async function fetchData() {
+            try {
+                const columnRes = await api.get("/tarefas/statustarefa/");
+                const columnData = columnRes.data;
+                setColumns(columnData);
+
+                const tasksRes = await api.get("/tarefas/tarefa/");
+                const taskData = tasksRes.data;
+
+                const tasksByColumn = {};
+                taskData.forEach(task => {
+                    if (!tasksByColumn[task.status_tarefa_id]) {
+                        tasksByColumn[task.status_tarefa_id] = [];
+                    }
+                    tasksByColumn[task.status_tarefa_id].push(task);
+                });
+                setTasks(tasksByColumn);
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        }
+
+        fetchData();
     }, []);
-
-    const getColumn = async () => {
-        try {
-            const res = await api.get("/tarefas/statustarefa/");
-            const columnData = res.data;
-            console.log("Fetched columns:", columnData); // Debugging: Log columns
-            setColumns(columnData);
-
-            // Initialize tasks for each column
-            const tasksInit = {};
-            columnData.forEach(column => {
-                tasksInit[column.status_tarefa_id] = [];
-            });
-            setTasks(tasksInit);
-        } catch (err) {
-            console.error('Erro ao buscar Status:', err);
-        }
-    };
-
-    const getTask = async () => {
-        try {
-            const res = await api.get("/tarefas/tarefa/");
-            const taskData = res.data;
-            console.log("Fetched tasks data:", taskData); // Debugging: Log tasks data
-
-            const tasksByColumn = {};
-            taskData.forEach(task => {
-                if (!tasksByColumn[task.status_tarefa_id]) {
-                    tasksByColumn[task.status_tarefa_id] = [];
-                }
-                tasksByColumn[task.status_tarefa_id].push(task);
-            });
-
-            setTasks(prevTasks => ({
-                ...prevTasks,
-                ...tasksByColumn,
-            }));
-            console.log("Updated tasks state:", tasksByColumn); // Debugging: Log updated tasks state
-        } catch (err) {
-            console.error('Erro ao buscar Tarefas:', err); // Added error logging
-        }
-    };
 
     const updateTaskStatus = async (taskId, newStatusId) => {
         try {
@@ -96,8 +75,6 @@ export default function Board() {
             });
         });
     };
-
-    console.log("Rendered tasks state:", tasks); // Debugging: Log rendered tasks state
 
     return (
         <DragDropContext onDragEnd={handleDragEnd}>

@@ -38,18 +38,19 @@ const Icons = styled.div`
 `;
 
 function bgcolorChange(props) {
-    return props.isDragging
+    return props.$isDragging
         ? "lightgreen"
-        : props.isDraggable
-            ? props.isBacklog
+        : props.$isDraggable
+            ? props.$isBacklog
                 ? "#F2D7D5"
                 : "#DCDCDC"
-            : props.isBacklog
+            : props.$isBacklog
                 ? "#F2D7D5"
                 : "#EAF4FC";
 }
 
 export default function Card({ task, index }) {
+    // console.log("Rendering Card for task:", task);
     return (
         <Suspense fallback={<div>Loading...</div>}>
             <Draggable draggableId={`${task.tarefa_id}`} key={task.tarefa_id} index={index}>
@@ -58,7 +59,7 @@ export default function Card({ task, index }) {
                         {...provided.draggableProps}
                         {...provided.dragHandleProps}
                         ref={provided.innerRef}
-                        isDragging={snapshot.isDragging}
+                        $isDragging={snapshot.isDragging}
                     >
                         <div style={{ display: "flex", justifyContent: "start", padding: 2 }}>
                             <span>
