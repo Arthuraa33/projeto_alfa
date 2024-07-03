@@ -1,0 +1,17 @@
+FROM node:alpine
+
+WORKDIR /frontend
+
+# Copy package.json and package-lock.json first to leverage Docker layer caching
+COPY ./frontend/package.json ./frontend/package-lock.json ./
+
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the frontend files
+COPY ./frontend .
+
+# EXPOSE 3000
+
+CMD [ "npm", "run", "deploy" ]
+# CMD [ "npm", "run", "start-watch" ]
