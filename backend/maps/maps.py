@@ -14,7 +14,18 @@ source = 'Avenida João Pereira dos Santos Filho, Itapetinga, Mossoró, RN, Bras
 destination  = 'Rua José Alves Cavalcante 951, CE, Brasil'
 
 #direction_result = gmaps.distance_matrix(source, destination, mode='driving')
-coordinates = gmaps.geocode(source)
-# Validate an address with address validation
 
-print(coordinates[0]['geometry']['location'])
+# Validate an address with address validation
+def get_coordinates(source):
+    coordinates = gmaps.geocode(source)
+    return coordinates[0]['geometry']['location']
+
+def get_distance(source,destination):
+    direction_result = gmaps.distance_matrix(source, destination, mode='driving')
+    if direction_result['status'] == 'OK':
+        distance_str = direction_result['rows'][0]['elements'][0]['distance']['text']
+        distance = int(distance_str.split(' ')[0])
+        return distance
+    return False
+
+print(get_coordinates(source))
