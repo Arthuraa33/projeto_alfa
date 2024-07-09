@@ -5,8 +5,8 @@ import { ACCESS_TOKEN } from "./constants";
 //const apiUrl = "http://localhost:8000";
 
 const api = axios.create({
-  // baseURL: import.meta.env.VITE_API_URL //? import.meta.env.VITE_API_URL : apiUrl,
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL: "https://app.raptorserp.com.br/api/"
+  // baseURL: import.meta.env.VITE_API_URL,
 });
 
 api.interceptors.request.use(
