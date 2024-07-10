@@ -11,6 +11,6 @@ urlpatterns = [
     path("api/token/refresh/", TokenRefreshView.as_view(), name="refresh"),
     path('api/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path("api-auth/", include("rest_framework.urls")),
-    path("api/", include("api.urls")),
-    path("tarefas/", include("tarefas.urls")),
+    path("api/api/", include("api.urls")),
+    path("api/tarefas/", include("tarefas.urls")),
 ]
