@@ -13,7 +13,9 @@ from .models import (
                      Fornecedores, 
                      TabelaPrecos,
                      Orcamentos,
-                     Pesquisas
+                     Pesquisas,
+                    #  Cidades,
+                    #  Estados
                      )
 
 
@@ -297,3 +299,13 @@ class PesquisasUpdateSerializer(serializers.ModelSerializer):
 
         instance.save()
         return instance
+
+# class CidadesSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Cidades
+#         fields = '__all__'
+
+# class EstadosSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Estados
+#         fields = '__all__'

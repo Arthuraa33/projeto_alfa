@@ -15,6 +15,26 @@ class ClassificacaoClientes(models.Model):
     def __str__(self):
         return str(self.classificacao_id)
 
+
+
+class Estados(models.Model):
+    estado_id = models.AutoField(primary_key=True)
+    estado_nome = models.CharField(null=True, max_length=100)
+    estado_sigla = models.CharField(null=True, max_length=100)
+
+    def __str__(self):
+        return str(self.classificacao_id)
+
+class Cidades(models.Model):
+    cidade_id = models.AutoField(primary_key=True)
+    cidade_nome = models.CharField(null=True, max_length=100)
+    cidade_codigo_ibge = models.CharField(null=True, max_length=100)
+    cidade_estado = models.CharField(null=True, max_length=100)
+    estado_id = models.ForeignKey(Estados, default=0, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return str(self.cidade_id)
+
 class Clientes(models.Model):
     cliente_id = models.AutoField(primary_key=True)
     cliente_nome = models.CharField(null=True, max_length=100)

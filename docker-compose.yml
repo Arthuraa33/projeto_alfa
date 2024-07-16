@@ -4,12 +4,14 @@ services:
   db:
     container_name: db
     image: postgres:16.1-alpine
+    ports:
+      - "5432:5432"
     # volumes:
     #   - ./data/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=arthur
+      - POSTGRES_USER=arthur
+      - POSTGRES_PASSWORD=arthur
     networks:
       - app-network
 
