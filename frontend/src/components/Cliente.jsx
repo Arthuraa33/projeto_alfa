@@ -1,52 +1,117 @@
 import React, { useState } from "react";
+import api from "../api";
 import "../styles/GestaoCadastro.css";
 
-function Cliente({ cliente, onDelete, onUpdate }) {
+function Cliente({ cliente, onDelete }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalVisibleOpen, setIsModalVisibleOpen] = useState(false);
     const [editCliente, setEditCliente] = useState(cliente);
+    const [updatedCliente, setUpdatedCliente] = useState(cliente);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setEditCliente({ ...editCliente, [name]: value });
     };
-
+    
     const handleUpdate = () => {
         onUpdate(editCliente);
+    };
+
+    const onUpdate = (updatedCliente) => {
         setIsModalOpen(false);
+        api.put(`api/gestao/cliente/${updatedCliente.cliente_id}/`, updatedCliente).then((res) => {
+            if (res.status === 200) {
+                setUpdatedCliente(updatedCliente); // Atualiza o estado local com os novos dados
+                alert("Cliente atualizado com sucesso!");
+            } else {
+                alert("Falha em atualizar o Cliente.");
+            }
+        });
         setIsModalVisibleOpen(false);
     };
+
+    const tableHeaders = [
+        { label: "Nome" },
+        { label: "Contato" },
+        { label: "Cidade" },
+        { label: "Estado" },
+        { label: "Observação" },
+        { label: "", width: "9%" }
+    ];
+
+    const tableData = [
+        { label: "cliente_nome" },
+        { label: "contato" },
+        { label: "cidade" },
+        { label: "estado" },
+        { label: "observacao" }
+    ];
+
+    const clienteFields = [
+        { label: "Nome", value: updatedCliente.cliente_nome },
+        { label: "Contato", value: updatedCliente.contato },
+        { label: "Aniversário", value: updatedCliente.aniversario },
+        { label: "Telefone", value: updatedCliente.telefone },
+        { label: "Email", value: updatedCliente.email },
+        { label: "CNPJ", value: updatedCliente.cnpj },
+        { label: "Rua", value: updatedCliente.rua },
+        { label: "Número", value: updatedCliente.numero_rua },
+        { label: "Complemento", value: updatedCliente.complemento_rua },
+        { label: "Ponto de Referência", value: updatedCliente.ponto_referencia },
+        { label: "Bairro", value: updatedCliente.bairro },
+        { label: "Cidade", value: updatedCliente.cidade },
+        { label: "Estado", value: updatedCliente.estado },
+        { label: "Área de Venda", value: updatedCliente.area_id },
+        { label: "Classificação do Cliente", value: updatedCliente.classificacao_id },
+        { label: "Observação", value: updatedCliente.observacao },
+    ];
+
+    const editFields = [
+        { label: "Nome", name: "cliente_nome", value: editCliente.cliente_nome },
+        { label: "Contato", name: "contato", value: editCliente.contato },
+        { label: "Aniversário", name: "aniversario", value: editCliente.aniversario },
+        { label: "Telefone", name: "telefone", value: editCliente.telefone },
+        { label: "Email", name: "email", value: editCliente.email },
+        { label: "CNPJ", name: "cnpj", value: editCliente.cnpj },
+        { label: "Rua", name: "rua", value: editCliente.rua },
+        { label: "Número", name: "numero_rua", value: editCliente.numero_rua },
+        { label: "Complemento", name: "complemento_rua", value: editCliente.complemento_rua },
+        { label: "Ponto de Referência", name: "ponto_referencia", value: editCliente.ponto_referencia },
+        { label: "Bairro", name: "bairro", value: editCliente.bairro },
+        { label: "Cidade", name: "cidade", value: editCliente.cidade },
+        { label: "Estado", name: "estado", value: editCliente.estado },
+        { label: "Área de Venda", name: "area_id", value: editCliente.area_id },
+        { label: "Classificação do Cliente", name: "classificacao_id", value: editCliente.classificacao_id },
+        { label: "Observação", name: "observacao", value: editCliente.observacao },
+    ];
 
     return (
         <div className="gestao-cadastro-container">
             <table>
                 <thead>
                     <tr>
-                        <th style={{ width: '5%' }}>ID</th>
-                        <th>Nome</th>
-                        <th>Contato</th>
-                        <th>Cidade</th>
-                        <th>Estado</th>
-                        <th>Observação</th>
-                        <th style={{ width: '9%' }}></th>
+                        {tableHeaders.map((header, index) => (
+                            <th key={index} style={{ width: header.width || "auto" }}>
+                                {header.label}
+                            </th>
+                        ))}
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td style={{ width: '5%' }} >{cliente.cliente_id}</td>
-                        <td>{cliente.cliente_nome}</td>
-                        <td>{cliente.contato}</td>
-                        <td>{cliente.cidade}</td>
-                        <td>{cliente.estado}</td>
-                        <td>{cliente.observacao}</td>
-                        <td style={{ width: '9%' }}> 
+                        {tableData.map((data, index) => (
+                            <td key={index} style={{ width: data.width || "auto" }}>
+                                {updatedCliente[data.label]}
+                            </td>
+                        ))}
+                        <td style={{ width: '9%' }}>
                             <button className="edit-button" onClick={() => setIsModalOpen(true)}>
                                 Editar
                             </button>
                             <button className="delete-button" onClick={() => onDelete(cliente.cliente_id)}>
                                 Excluir
                             </button>
-                            <button className="more-button" onClick={() => setIsModalVisibleOpen(true)}> 
+                            <button className="more-button" onClick={() => setIsModalVisibleOpen(true)}>
                                 Visualizar
                             </button>
                         </td>
@@ -59,58 +124,19 @@ function Cliente({ cliente, onDelete, onUpdate }) {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
                         <h2>Editar Cliente</h2>
-                        <form>
-                            <label>ID</label>
-                            <input type="text" name="cliente_id" value={editCliente.cliente_id} onChange={handleChange} readOnly />
-                            
-                            <label>Nome</label>
-                            <input type="text" name="cliente_nome" value={editCliente.cliente_nome} onChange={handleChange} />
-                            
-                            <label>Contato</label>
-                            <input type="text" name="contato" value={editCliente.contato} onChange={handleChange} />
-                            
-                            <label>Aniversário</label>
-                            <input type="text" name="aniversario" value={editCliente.aniversario} onChange={handleChange} />
-                            
-                            <label>Telefone</label>
-                            <input type="text" name="telefone" value={editCliente.telefone} onChange={handleChange} />
-                            
-                            <label>Email</label>
-                            <input type="text" name="email" value={editCliente.email} onChange={handleChange} />
-                            
-                            <label>CNPJ</label>
-                            <input type="text" name="cnpj" value={editCliente.cnpj} onChange={handleChange} />
-                            
-                            <label>Rua</label>
-                            <input type="text" name="rua" value={editCliente.rua} onChange={handleChange} />
-                            
-                            <label>Número</label>
-                            <input type="text" name="numero_rua" value={editCliente.numero_rua} onChange={handleChange} />
-                            
-                            <label>Complemento</label>
-                            <input type="text" name="complemento_rua" value={editCliente.complemento_rua} onChange={handleChange} />
-                            
-                            <label>Ponto de Referência</label>
-                            <input type="text" name="ponto_referencia" value={editCliente.ponto_referencia} onChange={handleChange} />
-                            
-                            <label>Bairro</label>
-                            <input type="text" name="bairro" value={editCliente.bairro} onChange={handleChange} />
-                            
-                            <label>Cidade</label>
-                            <input type="text" name="cidade" value={editCliente.cidade} onChange={handleChange} />
-                            
-                            <label>Estado</label>
-                            <input type="text" name="estado" value={editCliente.estado} onChange={handleChange} />
-
-                            <label>Área de Venda</label>
-                            <input type="text" name="area_id" value={editCliente.area_id} onChange={handleChange} />
-                            
-                            <label>Classificação Cliente</label>
-                            <input type="text" name="classificacao_id" value={editCliente.classificacao_id} onChange={handleChange} />
-
-                            <label>Observação</label>
-                            <input type="text" name="observacao" value={editCliente.observacao} onChange={handleChange} />
-
+                        <form className="edit-form">
+                            {editFields.map((field, index) => (
+                                <div key={index} className="form-field">
+                                    <label>{field.label}</label>
+                                    <input
+                                        type="text"
+                                        name={field.name}
+                                        value={field.value}
+                                        onChange={handleChange}
+                                        readOnly={field.readOnly}
+                                    />
+                                </div>
+                            ))}
                             <button type="button" onClick={handleUpdate}>
                                 Salvar
                             </button>
@@ -124,75 +150,13 @@ function Cliente({ cliente, onDelete, onUpdate }) {
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={() => setIsModalVisibleOpen(false)}>&times;</span>
                         <h2>Visualizar Cliente</h2>
-                        <form>
-                            <div>
-                                <label>ID:</label>
-                                <span>{editCliente.cliente_id}</span>
-                            </div>
-                            <div>
-                                <label>Nome:</label>
-                                <span>{editCliente.cliente_nome}</span>
-                            </div>
-                            <div>
-                                <label>Contato:</label>
-                                <span>{editCliente.contato}</span>
-                            </div>
-                            <div>
-                                <label>Aniversário:</label>
-                                <span>{editCliente.aniversario}</span>
-                            </div>
-                            <div>
-                                <label>Telefone:</label>
-                                <span>{editCliente.telefone}</span>
-                            </div>
-                            <div>
-                                <label>Email:</label>
-                                <span>{editCliente.email}</span>
-                            </div>
-                            <div>
-                                <label>CNPJ:</label>
-                                <span>{editCliente.cnpj}</span>
-                            </div>
-                            <div>
-                                <label>Rua:</label>
-                                <span>{editCliente.rua}</span>
-                            </div>
-                            <div>
-                                <label>Número:</label>
-                                <span>{editCliente.numero_rua}</span>
-                            </div>
-                            <div>
-                                <label>Complemento:</label>
-                                <span>{editCliente.complemento_rua}</span>
-                            </div>
-                            <div>
-                                <label>Ponto de Referência:</label>
-                                <span>{editCliente.ponto_referencia}</span>
-                            </div>
-                            <div>
-                                <label>Bairro:</label>
-                                <span>{editCliente.bairro}</span>
-                            </div>
-                            <div>
-                                <label>Cidade:</label>
-                                <span>{editCliente.cidade}</span>
-                            </div>
-                            <div>
-                                <label>Estado:</label>
-                                <span>{editCliente.estado}</span>
-                            </div>
-                            <div>
-                                <label>Área de Venda:</label>
-                                <span>{editCliente.area_id}</span>
-                            </div>
-                            <div>
-                                <label>Classificação do Cliente:</label>
-                                <span>{editCliente.classificacao_id}</span>
-                            </div>
-                            <div>
-                                <label>Observação:</label>
-                                <span>{editCliente.observacao}</span>
-                            </div>
+                        <form className="cliente-info">
+                            {clienteFields.map((field, index) => (
+                                <div key={index} className="cliente-info-field">
+                                    <label>{field.label}:</label>
+                                    <span>{field.value}</span>
+                                </div>
+                            ))}
                         </form>
                     </div>
                 </div>
