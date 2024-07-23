@@ -233,8 +233,6 @@ function CadastroFornecedor() {
                         onChange={(e) => setPonto_referencia(e.target.value)}
                         value={ponto_referencia}
                     />
-                    <label htmlFor="bairro">Bairro:</label>
-                    <br />
                     <label htmlFor="observacao">Observação:</label>
                     <br />
                     <input
