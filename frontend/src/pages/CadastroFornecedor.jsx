@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import Menu from "../components/Menu";
-import Footer from "../components/Footer";
+import axios from "axios";
 import "../styles/Home.css"
 
 function CadastroFornecedor() {
@@ -11,14 +11,38 @@ function CadastroFornecedor() {
     const [telefone, setTelefone] = useState("");
     const [email, setEmail] = useState("");
     const [cnpj, setCnpj] = useState("");
-    const [rua, setRua] = useState("");
-    const [numero_rua, setNumero_rua] = useState("");
-    const [complemento_rua, setComplemento_rua] = useState("");
     const [ponto_referencia, setPonto_referencia] = useState("");
-    const [bairro, setBairro] = useState("");
-    const [cidade, setCidade] = useState("");
-    const [estado, setEstado] = useState("");
     const [observacao, setObservacao] = useState("");
+
+    //para o cep
+    const [cep, setCep] = useState('');
+    const [rua, setRua] = useState('');
+    const [numero_rua, setNumero_rua] = useState('');
+    const [complemento_rua, setComplemento_rua] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [estado, setEstado] = useState('');
+
+    const handleCepChange = async (e) => {
+        const cepValue = e.target.value;
+        setCep(cepValue);
+    
+        if (cepValue.length === 8) {
+          try {
+            const response = await axios.get(`https://viacep.com.br/ws/${cepValue}/json/`);
+            console.log(response.data);
+            const { logradouro, bairro, localidade, uf } = response.data;
+    
+            setRua(logradouro);
+            setBairro(bairro);
+            setCidade(localidade);
+            setEstado(uf);
+          } catch (error) {
+            console.error('Erro ao buscar dados do CEP:', error);
+          }
+        }
+    };
+
 
     const createFornecedor = (e) => {
         e.preventDefault();
@@ -116,9 +140,21 @@ function CadastroFornecedor() {
                         onChange={(e) => setCnpj(e.target.value)}
                         value={cnpj}
                     />
-                    <label htmlFor="rua">Rua/Avenida:</label>
-                    <br />
-                    <input
+                    <div className="form-group">
+                        <label htmlFor="cep">Cep:</label>
+                        <input
+                        type="text"
+                        id="cep"
+                        name="cep"
+                        required
+                        placeholder="Digite o CEP"
+                        onChange={handleCepChange}
+                        value={cep}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="rua">Rua/Avenida:</label>
+                        <input
                         type="text"
                         id="rua"
                         name="rua"
@@ -126,7 +162,44 @@ function CadastroFornecedor() {
                         placeholder="Digite a Rua ou Avenida"
                         onChange={(e) => setRua(e.target.value)}
                         value={rua}
-                    />
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="bairro">Bairro:</label>
+                        <input
+                        type="text"
+                        id="bairro"
+                        name="bairro"
+                        required
+                        placeholder="Digite o bairro"
+                        onChange={(e) => setBairro(e.target.value)}
+                        value={bairro}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="cidade">Cidade:</label>
+                        <input
+                        type="text"
+                        id="cidade"
+                        name="cidade"
+                        required
+                        placeholder="Digite a Cidade"
+                        onChange={(e) => setCidade(e.target.value)}
+                        value={cidade}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="estado">Estado:</label>
+                        <input
+                        type="text"
+                        id="estado"
+                        name="estado"
+                        required
+                        placeholder="Digite o Estado"
+                        onChange={(e) => setEstado(e.target.value)}
+                        value={estado}
+                        />
+                    </div>
                     <label htmlFor="numero_rua">Número:</label>
                     <br />
                     <input
@@ -162,37 +235,6 @@ function CadastroFornecedor() {
                     />
                     <label htmlFor="bairro">Bairro:</label>
                     <br />
-                    <input
-                        type="text"
-                        id="bairro"
-                        name="bairro"
-                        required
-                        placeholder="Digite o bairro"
-                        onChange={(e) => setBairro(e.target.value)}
-                        value={bairro}
-                    />
-                    <label htmlFor="cidade">Cidade:</label>
-                    <br />
-                    <input
-                        type="text"
-                        id="cidade"
-                        name="cidade"
-                        required
-                        placeholder="Digite o cidade"
-                        onChange={(e) => setCidade(e.target.value)}
-                        value={cidade}
-                    />
-                    <label htmlFor="estado">Estado:</label>
-                    <br />
-                    <input
-                        type="text"
-                        id="estado"
-                        name="estado"
-                        required
-                        placeholder="Digite o Estado"
-                        onChange={(e) => setEstado(e.target.value)}
-                        value={estado}
-                    />
                     <label htmlFor="observacao">Observação:</label>
                     <br />
                     <input

@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import api from "../api";
 import axios from 'axios';
 import Menu from "../components/Menu";
-import Footer from "../components/Footer";
 import "../styles/Home.css";
 import "../styles/Formulario.css";
 
@@ -96,7 +95,6 @@ function CadastroCliente() {
             ? selectedClassificacao.classificacao_id
             : null;
 
-        // Converter a data para o formato ISO 8601
         const isoAniversario = new Date(aniversario).toISOString();
 
         api.post("/api/cadastro/cliente/", {
