@@ -8,14 +8,14 @@ def post_import(data,tipo):
 
     base_url = os.getenv('API_BASE_URL')
 
-    url_cidade= 'api/api/cadastro/cidade/'
-    url_estado= 'api/api/cadastro/estado/'
+    url_cidade= 'api/cadastro/cidade/'
+    url_estado= 'api/cadastro/estado/'
     if tipo == 'c':
         url = base_url+url_cidade
     if tipo == 'e':
         url = base_url+url_estado
 
-    auth_url = base_url+'api/token/'
+    auth_url = base_url+'token/'
     credentials = {
         'username': 'arthur',
         'password': '123'
@@ -45,14 +45,14 @@ def get_import(tipo):
 
     base_url = os.getenv('API_BASE_URL')
 
-    url_cidade= 'api/api/cadastro/cidade/'
-    url_estado= 'api/api/cadastro/estado/'
+    url_cidade= 'api/cadastro/cidade/'
+    url_estado= 'api/cadastro/estado/'
     if tipo == 'c':
         url = base_url+url_cidade
     if tipo == 'e':
         url = base_url+url_estado
         
-    auth_url = base_url+'api/token/'
+    auth_url = base_url+'token/'
     credentials = {
         'username': 'arthur',
         'password': '123'

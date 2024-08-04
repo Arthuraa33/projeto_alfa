@@ -29,8 +29,8 @@ from .serializers import (UserSerializer,
                           OrcamentosUpdateSerializer,
                           PesquisasSerializer,
                           PesquisasUpdateSerializer,
-                        #   CidadesSerializer,
-                        #   EstadosSerializer
+                          CidadesSerializer,
+                          EstadosSerializer
                           ) 
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from rest_framework.authentication import TokenAuthentication
@@ -47,8 +47,8 @@ from .models import (Clientes,
                      TabelaPrecos,
                      Orcamentos,
                      Pesquisas,
-                    #  Cidades,
-                    #  Estados
+                     Cidades,
+                     Estados
                     )
 
 class CreateUserView(generics.CreateAPIView):
@@ -316,12 +316,12 @@ class PesquisasDetail(generics.RetrieveUpdateAPIView):
     serializer_class = PesquisasUpdateSerializer
     permission_classes = [IsAuthenticated]
 
-# class CidadesListCreate(generics.ListCreateAPIView):
-#     queryset = Cidades.objects.all()
-#     serializer_class = CidadesSerializer
-#     permission_classes = [IsAuthenticated]
+class CidadesListCreate(generics.ListCreateAPIView):
+    queryset = Cidades.objects.all()
+    serializer_class = CidadesSerializer
+    permission_classes = [IsAuthenticated]
 
-# class EstadosListCreate(generics.ListCreateAPIView):
-#     queryset = Estados.objects.all()
-#     serializer_class = EstadosSerializer
-#     permission_classes = [IsAuthenticated]
+class EstadosListCreate(generics.ListCreateAPIView):
+    queryset = Estados.objects.all()
+    serializer_class = EstadosSerializer
+    permission_classes = [IsAuthenticated]
