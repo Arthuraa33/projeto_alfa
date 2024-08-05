@@ -30,6 +30,7 @@ def import_cidade(df):
     return True
     # print(data)
 # import_estado(df_estado)
+import_estado(df_estado)
 import_cidade(df_cidade)
 
 # print(df_cidade)

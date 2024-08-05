@@ -17,8 +17,8 @@ def post_import(data,tipo):
 
     auth_url = base_url+'token/'
     credentials = {
-        'username': 'arthur',
-        'password': '123'
+        'username': os.getenv('SUPER_ID'),
+        'password': os.getenv('SUPER_PASSWORD')
     }
 
     response = requests.post(auth_url, json=credentials)
@@ -54,8 +54,8 @@ def get_import(tipo):
         
     auth_url = base_url+'token/'
     credentials = {
-        'username': 'arthur',
-        'password': '123'
+        'username': os.getenv('SUPER_ID'),
+        'password': os.getenv('SUPER_PASSWORD')
     }
     response = requests.post(auth_url, json=credentials)
 
