@@ -15,23 +15,23 @@ class ClassificacaoClientes(models.Model):
     def __str__(self):
         return str(self.classificacao_id)
 
-class Estados(models.Model):
-    estado_id = models.AutoField(primary_key=True)
-    estado_nome = models.CharField(null=True, max_length=100)
-    estado_sigla = models.CharField(null=True, max_length=100)
+# class Estados(models.Model):
+#     estado_id = models.AutoField(primary_key=True)
+#     estado_nome = models.CharField(null=True, max_length=100)
+#     estado_sigla = models.CharField(null=True, max_length=100)
 
-    def __str__(self):
-        return str(self.classificacao_id)
+#     def __str__(self):
+#         return str(self.classificacao_id)
 
-class Cidades(models.Model):
-    cidade_id = models.AutoField(primary_key=True)
-    cidade_nome = models.CharField(null=True, max_length=100)
-    cidade_codigo_ibge = models.CharField(null=True, max_length=100)
-    cidade_estado = models.CharField(null=True, max_length=100)
-    estado_id = models.ForeignKey(Estados, default=0, on_delete=models.CASCADE)
+# class Cidades(models.Model):
+#     cidade_id = models.AutoField(primary_key=True)
+#     cidade_nome = models.CharField(null=True, max_length=100)
+#     cidade_codigo_ibge = models.CharField(null=True, max_length=100)
+#     cidade_estado = models.CharField(null=True, max_length=100)
+#     estado_id = models.ForeignKey(Estados, default=0, on_delete=models.CASCADE)
 
-    def __str__(self):
-        return str(self.cidade_id)
+#     def __str__(self):
+#         return str(self.cidade_id)
 
 class Clientes(models.Model):
     cliente_id = models.AutoField(primary_key=True)
@@ -46,8 +46,10 @@ class Clientes(models.Model):
     complemento_rua = models.CharField(null=True, max_length=100)
     ponto_referencia = models.CharField(null=True, max_length=200)
     bairro = models.CharField(null=True, max_length=100)
-    cidade_id = models.ForeignKey(Cidades, default=0, on_delete=models.CASCADE)
-    estado_id = models.ForeignKey(Estados, default=0, on_delete=models.CASCADE)
+    # cidade_id = models.ForeignKey(Cidades, default=0, on_delete=models.CASCADE)
+    # estado_id = models.ForeignKey(Estados, default=0, on_delete=models.CASCADE)
+    cidade = models.CharField(null=True, max_length=100)
+    estado = models.CharField(null=True, max_length=2)
     area_id = models.ForeignKey(AreasVenda, default=0, on_delete=models.CASCADE)
     classificacao_id = models.ForeignKey(ClassificacaoClientes, default=0, on_delete=models.CASCADE)
     observacao = models.TextField(null=True, max_length=200)
@@ -117,8 +119,8 @@ class Fornecedores(models.Model):
     complemento_rua = models.CharField(null=True, max_length=100)
     ponto_referencia = models.CharField(null=True, max_length=200)
     bairro = models.CharField(null=True, max_length=100)
-    cidade_id = models.ForeignKey(Cidades, default=0, on_delete=models.CASCADE)
-    estado_id = models.ForeignKey(Estados, default=0, on_delete=models.CASCADE)
+    cidade = models.CharField(null=True, max_length=100)
+    estado = models.CharField(null=True, max_length=2)
     observacao = models.TextField(null=True, max_length=200)
     fornecedor_lat = models.CharField(null=True, max_length=100)
     fornecedor_lng = models.CharField(null=True, max_length=100)
