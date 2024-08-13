@@ -29,6 +29,7 @@ function CadastroCliente() {
     const [bairro, setBairro] = useState('');
     const [cidade, setCidade] = useState('');
     const [estado, setEstado] = useState('');
+    const [readOnly, setReadOnly] = useState(false);
 
     const handleCepChange = async (e) => {
         const cepValue = e.target.value;
@@ -44,6 +45,7 @@ function CadastroCliente() {
             setBairro(bairro);
             setCidade(localidade);
             setEstado(uf);
+            setReadOnly(true);
           } catch (error) {
             console.error('Erro ao buscar dados do CEP:', error);
           }
@@ -200,7 +202,7 @@ function CadastroCliente() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="cep">Cep:</label>
+                        <label htmlFor="cep">CEP:</label>
                         <input
                         type="text"
                         id="cep"
@@ -212,15 +214,29 @@ function CadastroCliente() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="rua">Rua/Avenida:</label>
+                        <label htmlFor="estado">Estado:</label>
                         <input
                         type="text"
-                        id="rua"
-                        name="rua"
+                        id="estado"
+                        name="estado"
                         required
-                        placeholder="Digite a Rua ou Avenida"
-                        onChange={(e) => setRua(e.target.value)}
-                        value={rua}
+                        placeholder="Digite o Estado"
+                        onChange={(e) => setEstado(e.target.value)}
+                        value={estado}
+                        readOnly={readOnly}
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="cidade">Cidade:</label>
+                        <input
+                        type="text"
+                        id="cidade"
+                        name="cidade"
+                        required
+                        placeholder="Digite a Cidade"
+                        onChange={(e) => setCidade(e.target.value)}
+                        value={cidade}
+                        readOnly={readOnly}
                         />
                     </div>
                     <div className="form-group">
@@ -236,29 +252,18 @@ function CadastroCliente() {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="cidade">Cidade:</label>
+                        <label htmlFor="rua">Rua/Avenida:</label>
                         <input
                         type="text"
-                        id="cidade"
-                        name="cidade"
+                        id="rua"
+                        name="rua"
                         required
-                        placeholder="Digite a Cidade"
-                        onChange={(e) => setCidade(e.target.value)}
-                        value={cidade}
+                        placeholder="Digite a Rua ou Avenida"
+                        onChange={(e) => setRua(e.target.value)}
+                        value={rua}
                         />
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="estado">Estado:</label>
-                        <input
-                        type="text"
-                        id="estado"
-                        name="estado"
-                        required
-                        placeholder="Digite o Estado"
-                        onChange={(e) => setEstado(e.target.value)}
-                        value={estado}
-                        />
-                    </div>
+
                     <div className="form-group">
                         <label htmlFor="numero_rua">Número:</label>
                         <input
