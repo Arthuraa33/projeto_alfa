@@ -12,7 +12,7 @@ function Cliente({ cliente, onDelete }) {
         const { name, value } = e.target;
         setEditCliente({ ...editCliente, [name]: value });
     };
-    
+
     const handleUpdate = () => {
         onUpdate(editCliente);
     };
@@ -21,7 +21,7 @@ function Cliente({ cliente, onDelete }) {
         setIsModalOpen(false);
         api.put(`api/gestao/cliente/${updatedCliente.cliente_id}/`, updatedCliente).then((res) => {
             if (res.status === 200) {
-                setUpdatedCliente(updatedCliente); // Atualiza o estado local com os novos dados
+                setUpdatedCliente(updatedCliente);
                 alert("Cliente atualizado com sucesso!");
             } else {
                 alert("Falha em atualizar o Cliente.");
@@ -30,138 +30,64 @@ function Cliente({ cliente, onDelete }) {
         setIsModalVisibleOpen(false);
     };
 
-    const tableHeaders = [
-        { label: "Nome" },
-        { label: "Contato" },
-        { label: "Cidade" },
-        { label: "Estado" },
-        { label: "Observação" },
-        { label: "", width: "9%" }
-    ];
-
-    const tableData = [
-        { label: "cliente_nome" },
-        { label: "contato" },
-        { label: "cidade" },
-        { label: "estado" },
-        { label: "observacao" }
-    ];
-
-    const clienteFields = [
-        { label: "Nome", value: updatedCliente.cliente_nome },
-        { label: "Contato", value: updatedCliente.contato },
-        { label: "Aniversário", value: updatedCliente.aniversario },
-        { label: "Telefone", value: updatedCliente.telefone },
-        { label: "Email", value: updatedCliente.email },
-        { label: "CNPJ", value: updatedCliente.cnpj },
-        { label: "Rua", value: updatedCliente.rua },
-        { label: "Número", value: updatedCliente.numero_rua },
-        { label: "Complemento", value: updatedCliente.complemento_rua },
-        { label: "Ponto de Referência", value: updatedCliente.ponto_referencia },
-        { label: "Bairro", value: updatedCliente.bairro },
-        { label: "Cidade", value: updatedCliente.cidade },
-        { label: "Estado", value: updatedCliente.estado },
-        { label: "Área de Venda", value: updatedCliente.area_id },
-        { label: "Classificação do Cliente", value: updatedCliente.classificacao_id },
-        { label: "Observação", value: updatedCliente.observacao },
-    ];
-
-    const editFields = [
-        { label: "Nome", name: "cliente_nome", value: editCliente.cliente_nome },
-        { label: "Contato", name: "contato", value: editCliente.contato },
-        { label: "Aniversário", name: "aniversario", value: editCliente.aniversario },
-        { label: "Telefone", name: "telefone", value: editCliente.telefone },
-        { label: "Email", name: "email", value: editCliente.email },
-        { label: "CNPJ", name: "cnpj", value: editCliente.cnpj },
-        { label: "Rua", name: "rua", value: editCliente.rua },
-        { label: "Número", name: "numero_rua", value: editCliente.numero_rua },
-        { label: "Complemento", name: "complemento_rua", value: editCliente.complemento_rua },
-        { label: "Ponto de Referência", name: "ponto_referencia", value: editCliente.ponto_referencia },
-        { label: "Bairro", name: "bairro", value: editCliente.bairro },
-        { label: "Cidade", name: "cidade", value: editCliente.cidade },
-        { label: "Estado", name: "estado", value: editCliente.estado },
-        { label: "Área de Venda", name: "area_id", value: editCliente.area_id },
-        { label: "Classificação do Cliente", name: "classificacao_id", value: editCliente.classificacao_id },
-        { label: "Observação", name: "observacao", value: editCliente.observacao },
-    ];
-
     return (
-        <div className="gestao-cadastro-container">
-            <table>
-                <thead>
-                    <tr>
-                        {tableHeaders.map((header, index) => (
-                            <th key={index} style={{ width: header.width || "auto" }}>
-                                {header.label}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {tableData.map((data, index) => (
-                            <td key={index} style={{ width: data.width || "auto" }}>
-                                {updatedCliente[data.label]}
-                            </td>
-                        ))}
-                        <td style={{ width: '9%' }}>
-                            <button className="edit-button" onClick={() => setIsModalOpen(true)}>
-                                Editar
-                            </button>
-                            <button className="delete-button" onClick={() => onDelete(cliente.cliente_id)}>
-                                Excluir
-                            </button>
-                            <button className="more-button" onClick={() => setIsModalVisibleOpen(true)}>
-                                Visualizar
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <>
+            <tr>
+                <td>{updatedCliente.cliente_nome}</td>
+                <td>{updatedCliente.contato}</td>
+                <td>{updatedCliente.cidade}</td>
+                <td>{updatedCliente.estado}</td>
+                <td>{updatedCliente.observacao}</td>
+                <td>
+                    <button className="edit-button" onClick={() => setIsModalOpen(true)}>Editar</button>
+                    <button className="delete-button" onClick={() => onDelete(cliente.cliente_id)}>Excluir</button>
+                    {/* <button className="more-button" onClick={() => setIsModalVisibleOpen(true)}>Visualizar</button> */}
+                </td>
+            </tr>
 
+            {/* Modal para editar */}
             {isModalOpen && (
                 <div className="modal" onClick={() => setIsModalOpen(false)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
                         <h2>Editar Cliente</h2>
                         <form className="edit-form">
-                            {editFields.map((field, index) => (
+                            {/* Renderize os campos de edição aqui */}
+                            {Object.keys(editCliente).map((key, index) => (
                                 <div key={index} className="form-field">
-                                    <label>{field.label}</label>
+                                    <label>{key}</label>
                                     <input
                                         type="text"
-                                        name={field.name}
-                                        value={field.value}
+                                        name={key}
+                                        value={editCliente[key]}
                                         onChange={handleChange}
-                                        readOnly={field.readOnly}
                                     />
                                 </div>
                             ))}
-                            <button type="button" onClick={handleUpdate}>
-                                Salvar
-                            </button>
+                            <button className="edit-button" onClick={handleUpdate}>Salvar</button>
                         </form>
                     </div>
                 </div>
             )}
 
+            {/* Modal para visualizar */}
             {isModalVisibleOpen && (
                 <div className="modal" onClick={() => setIsModalVisibleOpen(false)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={() => setIsModalVisibleOpen(false)}>&times;</span>
                         <h2>Visualizar Cliente</h2>
-                        <form className="cliente-info">
-                            {clienteFields.map((field, index) => (
+                        <div className="cliente-info">
+                            {Object.keys(updatedCliente).map((key, index) => (
                                 <div key={index} className="cliente-info-field">
-                                    <label>{field.label}:</label>
-                                    <span>{field.value}</span>
+                                    <label>{key}:</label>
+                                    <span>{updatedCliente[key]}</span>
                                 </div>
                             ))}
-                        </form>
+                        </div>
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 
