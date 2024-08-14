@@ -98,6 +98,8 @@ function CadastroCliente() {
             : null;
 
         const isoAniversario = new Date(aniversario).toISOString();
+        const cliente_lat = 0;
+        const cliente_lng = 0;
 
         api.post("/api/cadastro/cliente/", {
             cliente_nome,
@@ -116,6 +118,8 @@ function CadastroCliente() {
             area_id,
             classificacao_id,
             observacao,
+            cliente_lat,
+            cliente_lng
         })
             .then((res) => {
                 if (res.status === 201) alert("Cliente Cadastrado!");
