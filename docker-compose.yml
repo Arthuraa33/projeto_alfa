@@ -8,10 +8,6 @@ services:
       - "5432:5432"
     # volumes:
     #   - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=arthur
-      - POSTGRES_USER=arthur
-      - POSTGRES_PASSWORD=arthur
     networks:
       - app-network
 
@@ -24,10 +20,6 @@ services:
       - .:/code
     ports:
       - "8000:8000"
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
     networks:
       - app-network
     depends_on:

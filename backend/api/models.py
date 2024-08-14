@@ -46,15 +46,13 @@ class Clientes(models.Model):
     complemento_rua = models.CharField(null=True, max_length=100)
     ponto_referencia = models.CharField(null=True, max_length=200)
     bairro = models.CharField(null=True, max_length=100)
-    # cidade_id = models.ForeignKey(Cidades, default=0, on_delete=models.CASCADE)
-    # estado_id = models.ForeignKey(Estados, default=0, on_delete=models.CASCADE)
     cidade = models.CharField(null=True, max_length=100)
     estado = models.CharField(null=True, max_length=2)
     area_id = models.ForeignKey(AreasVenda, default=0, on_delete=models.CASCADE)
     classificacao_id = models.ForeignKey(ClassificacaoClientes, default=0, on_delete=models.CASCADE)
     observacao = models.TextField(null=True, max_length=200)
-    cliente_lat = models.CharField(null=True, max_length=100)
-    cliente_lng = models.CharField(null=True, max_length=100)
+    cliente_lat = models.CharField(null=True, default=0, max_length=100)
+    cliente_lng = models.CharField(null=True, default=0, max_length=100)
     data_cadastro = models.DateTimeField(null=True, auto_now_add=True)
 
     def __str__(self):
