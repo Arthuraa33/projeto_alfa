@@ -10,6 +10,7 @@ class StatusTarefas(models.Model):
     status_tarefa_id = models.AutoField(primary_key=True)
     pedido_fechado = models.BooleanField(default=False)
     status_nome = models.CharField(null=True, max_length=100)
+    status_ordem = models.IntegerField(null=True)
     
     def __str__(self):
         return str(self.status_tarefa_id)

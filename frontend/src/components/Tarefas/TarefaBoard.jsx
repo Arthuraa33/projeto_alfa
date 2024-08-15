@@ -10,12 +10,16 @@ export default function Board() {
     useEffect(() => {
         async function fetchData() {
             try {
+                // Fetch columns data
                 const columnRes = await api.get("/tarefas/statustarefa/");
                 const columnData = columnRes.data;
+                console.log("Column data fetched from API:", columnData); // Log columns data
                 setColumns(columnData);
 
+                // Fetch tasks data
                 const tasksRes = await api.get("/tarefas/tarefa/");
                 const taskData = tasksRes.data;
+                console.log("Task data fetched from API:", taskData); // Log tasks data
 
                 const tasksByColumn = {};
                 taskData.forEach(task => {
@@ -24,6 +28,7 @@ export default function Board() {
                     }
                     tasksByColumn[task.status_tarefa_id].push(task);
                 });
+                console.log("Tasks grouped by column:", tasksByColumn); // Log tasks grouped by columns
                 setTasks(tasksByColumn);
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -59,7 +64,6 @@ export default function Board() {
                 if (source.droppableId === destination.droppableId) {
                     destinationTasks = sourceTasks;
                 } else {
-                    // Check if destination exists in prevTasks
                     destinationTasks = prevTasks[destination.droppableId] ? Array.from(prevTasks[destination.droppableId]) : [];
                 }
     
@@ -72,12 +76,14 @@ export default function Board() {
                     [destination.droppableId]: destinationTasks,
                 };
 
+                // Log updated tasks after drag and drop
+                console.log("Tasks after move:", updatedTasks);
+
                 // Se a tarefa foi movida para uma nova coluna, atualize o status no backend
                 if (source.droppableId !== destination.droppableId) {
                     updateTaskStatus(movedTask.tarefa_id, destination.droppableId);
                 }
 
-                console.log("Tasks after move:", updatedTasks); // Debugging: Log tasks after move
                 return updatedTasks;
             });
         });
@@ -96,14 +102,19 @@ export default function Board() {
                     margin: "0 auto",
                 }}
             >
-                {columns.map((column) => (
-                    <Column
-                        key={column.status_tarefa_id}
-                        title={column.status_nome}
-                        tasks={tasks[column.status_tarefa_id] || []}
-                        id={column.status_tarefa_id}
-                    />
-                ))}
+                {columns
+                    .sort((a, b) => Number(a.status_ordem) - Number(b.status_ordem)) // Ensure status_ordem is numeric
+                    .map((column) => {
+                        
+                        return (
+                            <Column
+                                key={column.status_tarefa_id}
+                                title={column.status_nome}
+                                tasks={tasks[column.status_tarefa_id] || []}
+                                id={column.status_tarefa_id}
+                            />
+                        );
+                    })}
             </div>
         </DragDropContext>
     );
