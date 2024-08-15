@@ -24,7 +24,9 @@ function CadastroPedido() {
     const [pedido_comissao, setPedidoComissao] = useState([]);
     const [pedido_quantidade, setPedidoQuantidade] = useState([]);
     const [pedido_data, setPedidoData] = useState([]);
-    const [pedido_condicao_pagamento, setCondicaoPagamento] = useState([]);
+    const [condicao_pagamentos, setCondicaoPagamentos] = useState([]);
+    const [condicao_pagamento_id, setCondicaoPagamentoId] = useState([]);
+    const [condicao_pagamento_nome, setCondicaoPagamentoNome] = useState([]);
     const [pedido_valor, setPedidoValor] = useState([]);
 
     useEffect(() => {
@@ -33,6 +35,7 @@ function CadastroPedido() {
         getTransportes();
         getTipoTransportes();
         getVendedores();
+        getCondicaoPagamentos();
     }, []);
     
       const getClientes = () => {
@@ -91,6 +94,20 @@ function CadastroPedido() {
           });
       };
 
+      const getCondicaoPagamentos = () => {
+        api
+          .get("/api/cadastro/condicaopagamento/")
+          .then((res) => {
+            setCondicaoPagamentos(res.data); 
+            if (res.data.length > 0) {
+                setCondicaoPagamentoNome(res.data[0].condicao_pagamento_nome);
+            }
+          })
+          .catch((err) => {
+            console.error('Erro ao buscar Condição de Pagemento:', err);
+          });
+      };
+
       const getVendedores = () => {
         api
           .get("/api/cadastro/vendedor/")
@@ -119,19 +136,32 @@ function CadastroPedido() {
         const selectedTipoTransporte = tipo_transportes.find(tipo_transporte => tipo_transporte.tipo_transporte_nome === tipo_transporte_nome);
         const tipo_transporte_id = selectedTipoTransporte ? selectedTipoTransporte.tipo_transporte_id : null;
 
+        const selectedCondicaoPagamento = condicao_pagamentos.find(condicao_pagamento => condicao_pagamento.condicao_pagamento_nome === condicao_pagamento_nome);
+        const condicao_pagamento_id = selectedCondicaoPagamento ? selectedCondicaoPagamento.condicao_pagamento_id : null;
+
         const selectedVendedor = vendedores.find(vendedor => vendedor.vendedor_nome === vendedor_nome);
         const vendedor_id = selectedVendedor ? selectedVendedor.vendedor_id : null;
 
+        const isoDataPedido = new Date(pedido_data).toISOString();
+        console.log(cliente_id,
+            produto_id, 
+            transporte_id,
+            tipo_transporte_id,
+            vendedor_id,
+            pedido_comissao,
+            pedido_quantidade,
+            pedido_data,
+            condicao_pagamento_id,
+            pedido_valor);
         api
             .post("/api/cadastro/pedido/", { cliente_id,
                                             produto_id, 
                                             transporte_id,
                                             tipo_transporte_id,
                                             vendedor_id,
-                                            pedido_comissao,
                                             pedido_quantidade,
                                             pedido_data,
-                                            pedido_condicao_pagamento,
+                                            condicao_pagamento_id,
                                             pedido_valor
                                         })
             .then((res) => {
@@ -216,16 +246,20 @@ function CadastroPedido() {
                                 ))}
                             </select>
                         </div>
-                        <label htmlFor="pedido_comissao">Comissao do Pedido:</label>
-                        <br />
-                        <input
-                            type="text"
-                            id="pedido_comissao"
-                            name="pedido_comissao"
-                            required
-                            onChange={(e) => setPedidoComissao(e.target.value)}
-                            value={pedido_comissao}
-                        />
+                        
+                        <div>
+                            <label htmlFor="condicao_pagamento">Condição de Pagamento:</label>
+                            <select 
+                                id="condicao_pagamento" 
+                                name="condicao_pagamento"
+                                onChange={(e) => setCondicaoPagamentoId(e.target.value)}
+                                value={condicao_pagamento_id}
+                            >
+                                {condicao_pagamentos.map(condicao_pagamento => (
+                                    <option key={condicao_pagamento.condicao_pagamento_id} value={condicao_pagamento.condicao_pagamento_id}>{condicao_pagamento.condicao_pagamento_nome}</option>
+                                ))}
+                            </select>
+                        </div>
 
                         <label htmlFor="pedido_quantidade">Quantidade do Pedido:</label>
                         <br />
@@ -238,27 +272,17 @@ function CadastroPedido() {
                             value={pedido_quantidade}
                         />
 
+                        <div className="form-group">
                         <label htmlFor="pedido_data">Data do Pedido:</label>
-                        <br />
                         <input
-                            type="text"
+                            type="date"
                             id="pedido_data"
                             name="pedido_data"
                             required
                             onChange={(e) => setPedidoData(e.target.value)}
                             value={pedido_data}
                         />
-
-                        <label htmlFor="pedido_condicao_pagamento">Condição de Pagamento:</label>
-                        <br />
-                        <input
-                            type="text"
-                            id="pedido_condicao_pagamento"
-                            name="pedido_condicao_pagamento"
-                            required
-                            onChange={(e) => setCondicaoPagamento(e.target.value)}
-                            value={pedido_condicao_pagamento}
-                        />
+                        </div>
 
                         <label htmlFor="pedido_valor">Valor do Pedido:</label>
                         <br />

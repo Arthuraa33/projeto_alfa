@@ -69,6 +69,11 @@ urlpatterns = [
     path("gestao/classificacaocliente/", views.ClassificacaoClientesList.as_view(), name="gestao-classificacaocliente"),     
     path("cadastro/classificacaocliente/", views.ClassificacaoClientesListCreate.as_view(), name="area-list"),
 
+    path("gestao/condicaopagamento/delete/<int:pk>/", views.CondicaoPagamentoDelete.as_view(), name="delete-condicaopagamento"),
+    path("gestao/condicaopagamento/<int:pk>/", views.CondicaoPagamentoDetail.as_view(), name='condicaopagamentos-detail'),
+    path("gestao/condicaopagamento/", views.CondicaoPagamentoList.as_view(), name="gestao-condicaopagamento"),
+    path("cadastro/condicaopagamento/", views.CondicaoPagamentoListCreate.as_view(), name="condicaopagamento-list"),
+
     # path("cadastro/cidade/", views.CidadesListCreate.as_view(), name="cidade-list"),
     # path("cadastro/estado/", views.EstadosListCreate.as_view(), name="estado-list"),
 
