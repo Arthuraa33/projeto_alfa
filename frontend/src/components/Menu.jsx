@@ -27,8 +27,8 @@ function Menu(){
                                 Vendas
                             </a>
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><Link className="dropdown-item" to="/cadastro/pedido"> Pedido</Link></li>
-                                <li><Link className="dropdown-item" to="/cadastro/pesquisa"> Pesquisa</Link></li>
+                                <li><Link className="dropdown-item" to="/cadastro/pedido">Criar Pedido</Link></li>
+                                <li><Link className="dropdown-item" to="/cadastro/pesquisa">Criar Pesquisa</Link></li>
                             </ul>
             </li>
             <li className="nav-item dropdown">
