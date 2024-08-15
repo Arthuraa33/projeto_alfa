@@ -1,33 +1,36 @@
 import { useState, useEffect } from "react";
 import api from "../../api";
 import Menu from "../../components/Menu";
-import Fornecedor from "../../components/GestaoCadastros/Fornecedor";
-import "../../styles/Home.css"
+import Cliente from "../../components/GestaoCadastros/Cliente";
+import "../../styles/Home.css";
 
-function GestaoFornecedor() {
-    const [fornecedores, setFornecedores] = useState([]);
+function GestaoCliente() {
+    const [clientes, setClientes] = useState([]);
 
     useEffect(() => {
-        getFornecedores();
+        getClientes();
     }, []);
 
-    const getFornecedores = () => {
+    const getClientes = () => {
         api
-            .get("/api/gestao/fornecedor/")
+            .get("/api/cadastro/cliente/")
             .then((res) => res.data)
             .then((data) => {
-                setFornecedores(data);
-                console.log(data);
+                setClientes(data);
             })
             .catch((err) => alert(err));
     };
-    const deleteFornecedor = (fornecedores_id) => {
+
+    const deleteCliente = (cliente_id) => {
         api
-            .delete(`/api/gestao/fornecedor/delete/${fornecedores_id}/`)
+            .delete(`/api/gestao/cliente/delete/${cliente_id}/`)
             .then((res) => {
-                if (res.status === 204) alert("Fornecedor Excluido!");
-                else alert("Falha em deletar o fornecedor");
-                getFornecedores();
+                if (res.status === 204) {
+                    alert("Cliente excluído!");
+                    getClientes();
+                } else {
+                    alert("Falha em deletar o Cliente");
+                }
             })
             .catch((error) => alert(error));
     };
@@ -36,7 +39,7 @@ function GestaoFornecedor() {
         <div>
             <Menu />
             <div>
-                <h2>Fornecedores</h2>
+                <h2>Clientes</h2>
                 <table>
                     <thead>
                         <tr>
@@ -49,11 +52,11 @@ function GestaoFornecedor() {
                         </tr>
                     </thead>
                     <tbody>
-                        {fornecedores.map((fornecedor) => (
-                            <Fornecedor 
-                                key={fornecedor.fornecedor_id} 
-                                fornecedor={fornecedor} 
-                                onDelete={deleteFornecedor} 
+                        {clientes.map((cliente) => (
+                            <Cliente 
+                                key={cliente.cliente_id} 
+                                cliente={cliente} 
+                                onDelete={deleteCliente} 
                             />
                         ))}
                     </tbody>
@@ -63,4 +66,4 @@ function GestaoFornecedor() {
     );
 }
 
-export default GestaoFornecedor;
+export default GestaoCliente;

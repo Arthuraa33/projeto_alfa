@@ -16,7 +16,6 @@ import CadastroOrcamento from "./pages/CadastroOrcamento"
 import CadastroPesquisa from "./pages/CadastroPesquisa"
 import CadastroAreaVenda from "./pages/CadastroAreaVenda"
 import CadastroClassificacaoCliente from "./pages/CadastroClassificacaoCliente"
-import GestaoCliente from "./pages/GestaoCliente" 
 import GestaoDashboard from "./pages/GestaoDashboard" 
 import TarefasKanban from "./pages/Tarefas/TarefasKanban" 
 import CadastroStatusTarefas from "./pages/Tarefas/CadastroStatusTarefas"
@@ -26,6 +25,15 @@ import NotFound from "./pages/NotFound"
 import ProtectedRoute from "./components/ProtectedRoute"
 import HomeApp from "./pages/HomeApp"
 import GestaoFornecedor from "./pages/GestaoCadastros/GestaoFornecedor"
+import GestaoCliente from "./pages/GestaoCadastros/GestaoCliente" 
+import GestaoVendedor from "./pages/GestaoCadastros/GestaoVendedor" 
+import GestaoMarca from "./pages/GestaoCadastros/GestaoMarca" 
+import GestaoProduto from "./pages/GestaoCadastros/GestaoProduto" 
+import GestaoTransporte from "./pages/GestaoCadastros/GestaoTransporte" 
+import GestaoTipoTransporte from "./pages/GestaoCadastros/GestaoTipoTransporte" 
+import GestaoTabelaPrecos from "./pages/GestaoCadastros/GestaoTabelaPrecos" 
+import GestaoAreaVenda from "./pages/GestaoCadastros/GestaoAreaVenda" 
+import GestaoClassificacaoCliente from "./pages/GestaoCadastros/GestaoClassificacaoCliente" 
 
 
 function Logout() {
@@ -146,6 +154,57 @@ function App() {
           }
         />
 
+        <Route path="/gestao/vendedor" element={
+            <ProtectedRoute>
+              <GestaoVendedor />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/gestao/marca" element={
+            <ProtectedRoute>
+              <GestaoMarca />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/gestao/produto" element={
+            <ProtectedRoute>
+              <GestaoProduto />
+            </ProtectedRoute>
+          }
+        />
+
+        <Route path="/gestao/transporte" element={
+            <ProtectedRoute>
+              <GestaoTransporte />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/gestao/tipotransporte" element={
+            <ProtectedRoute>
+              <GestaoTipoTransporte />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/gestao/tabelaprecos" element={
+            <ProtectedRoute>
+              <GestaoTabelaPrecos />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/gestao/areavenda" element={
+            <ProtectedRoute>
+              <GestaoAreaVenda />
+            </ProtectedRoute>
+          }
+        />
+        <Route path="/gestao/classificacaocliente" element={
+            <ProtectedRoute>
+              <GestaoClassificacaoCliente />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/gestao/dashboard" element={
             <ProtectedRoute>
               <GestaoDashboard />

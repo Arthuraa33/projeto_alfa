@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import api from "../api";
-import "../styles/Client.css";
+import api from "../../api";
+import "../../styles/GestaoCadastro.css";
 
 function Fornecedor({ fornecedor, onDelete }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -82,81 +82,64 @@ function Fornecedor({ fornecedor, onDelete }) {
     ];
 
     return (
-        <div className="gestao-cadastro-container">
-            <table>
-                <thead>
-                    <tr>
-                        {tableHeaders.map((header, index) => (
-                            <th key={index} style={{ width: header.width || "auto" }}>
-                                {header.label}
-                            </th>
-                        ))}
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {tableData.map((data, index) => (
-                            <td key={index} style={{ width: data.width || "auto" }}>
-                                {updatedFornecedor[data.label]}
-                            </td>
-                        ))}
-                        <td style={{ width: "9%" }}>
-                            <button className="edit-button" onClick={() => setIsModalOpen(true)}>
-                                Editar
-                            </button>
-                            <button className="delete-button" onClick={() => onDelete(updatedFornecedor.fornecedor_id)}>
-                                Excluir
-                            </button>
-                            <button className="more-button" onClick={() => setIsModalVisibleOpen(true)}>
-                                Visualizar
-                            </button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <>
+            <tr>
+                <td>{updatedFornecedor.fornecedor_nome}</td>
+                <td>{updatedFornecedor.contato}</td>
+                <td>{updatedFornecedor.cidade}</td>
+                <td>{updatedFornecedor.estado}</td>
+                <td>{updatedFornecedor.observacao}</td>
+                <td>
+                    <button className="edit-button" onClick={() => setIsModalOpen(true)}>Editar</button>
+                    <button className="delete-button" onClick={() => onDelete(fornecedor.fornecedor_id)}>Excluir</button>
+                    {/* <button className="more-button" onClick={() => setIsModalVisibleOpen(true)}>Visualizar</button> */}
+                </td>
+            </tr>
+
             {isModalOpen && (
                 <div className="modal" onClick={() => setIsModalOpen(false)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={() => setIsModalOpen(false)}>&times;</span>
                         <h2>Editar Fornecedor</h2>
-                        <form className="edit-modal">
-                            {editFields.map((field, index) => (
-                                <div key={index}>
-                                    <label>{field.label}</label>
+                        <form className="edit-form">
+                            {/* Renderize os campos de edição aqui */}
+                            {Object.keys(editFornecedor).map((key, index) => (
+                                (key !== "fornecedor_id" && key !== "fornecedor_lat" && key !== "fornecedor_lng" && key !== "data_cadastro") && (
+                                <div key={index} className="form-field">
+                                    <label>{key}</label>
                                     <input
                                         type="text"
-                                        name={field.name}
-                                        value={field.value}
+                                        name={key}
+                                        value={editFornecedor[key]}
                                         onChange={handleChange}
-                                        readOnly={field.readOnly}
                                     />
                                 </div>
+                                )
                             ))}
-                            <button type="button" onClick={handleUpdate}>
-                                Salvar
-                            </button>
+                            <button className="edit-button" onClick={handleUpdate}>Salvar</button>
                         </form>
                     </div>
                 </div>
             )}
 
+            {/* Modal para visualizar */}
             {isModalVisibleOpen && (
                 <div className="modal" onClick={() => setIsModalVisibleOpen(false)}>
                     <div className="modal-content" onClick={(e) => e.stopPropagation()}>
                         <span className="close" onClick={() => setIsModalVisibleOpen(false)}>&times;</span>
                         <h2>Visualizar Fornecedor</h2>
-                        <form className="fornecedor-info">
-                            {fornecedorFields.map((field, index) => (
+                        <div className="fornecedor-info">
+                            {Object.keys(updatedFornecedor).map((key, index) => (
                                 <div key={index} className="fornecedor-info-field">
-                                    <label>{field.label}</label>
-                                    <span>{field.value}</span>
+                                    <label>{key}:</label>
+                                    <span>{updatedFornecedor[key]}</span>
                                 </div>
                             ))}
-                        </form>
+                        </div>
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
 }
 
