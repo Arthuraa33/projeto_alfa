@@ -78,8 +78,8 @@ class Produtos(models.Model):
 class Transportes(models.Model):
     transporte_id = models.AutoField(primary_key=True)
     transporte_nome = models.CharField(null=True, max_length=100)
-    capacidade_kg = models.FloatField()
-    capacidade_un = models.IntegerField()
+    capacidade_kg = models.FloatField(null=True)
+    capacidade_un = models.IntegerField(null=True)
     preco_km = models.FloatField(null=True)
 
     def __str__(self):
@@ -179,6 +179,8 @@ class Pesquisas(models.Model):
     marca_id = models.ForeignKey(Marcas, on_delete=models.CASCADE)   
     transporte_id = models.ForeignKey(Transportes, on_delete=models.CASCADE)
     tipo_transporte_id = models.ForeignKey(TipoTransportes, on_delete=models.CASCADE)
+    fornecedor_id = models.ForeignKey(Fornecedores, default='',on_delete=models.CASCADE)
+    volume_mensal = models.IntegerField(null=True)
     pesquisa_preco = models.FloatField(null=True)
     pesquisa_preco_sugerido = models.FloatField(null=True)
     data_cadastro = models.DateTimeField(null=True, auto_now_add=True)
