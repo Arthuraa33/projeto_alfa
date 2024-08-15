@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import api from "../../api";
 import Menu from "../../components/Menu";
-import Fornecedor from "../../components/Fornecedor";
+import Fornecedor from "../../components/GestaoCadastros/Fornecedor";
 import "../../styles/Home.css"
 
 function GestaoFornecedor() {
@@ -34,13 +34,30 @@ function GestaoFornecedor() {
 
     return (
         <div>
-            <Menu/>
+            <Menu />
             <div>
                 <h2>Fornecedores</h2>
-
-                {fornecedores.map((fornecedor) => (
-                    <Fornecedor fornecedor={fornecedor} onDelete={deleteFornecedor} key={fornecedor.fornecedor_id} />
-                ))}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Contato</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Observação</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {fornecedores.map((fornecedor) => (
+                            <Fornecedor 
+                                key={fornecedor.fornecedor_id} 
+                                fornecedor={fornecedor} 
+                                onDelete={deleteFornecedor} 
+                            />
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
     );

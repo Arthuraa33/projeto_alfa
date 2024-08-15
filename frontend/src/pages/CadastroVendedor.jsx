@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import Menu from "../components/Menu";
-import Footer from "../components/Footer";
 import "../styles/Home.css"
 
 function CadastroVendedor() {

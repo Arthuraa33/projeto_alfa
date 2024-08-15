@@ -20,7 +20,16 @@ function Menu(){
               <Link className="nav-link" to="/app">Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/cadastro/pedido">Pedido</Link>
+              
+            </li>
+            <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Vendas
+                            </a>
+                            <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><Link className="dropdown-item" to="/cadastro/pedido"> Pedido</Link></li>
+                                <li><Link className="dropdown-item" to="/cadastro/pesquisa"> Pesquisa</Link></li>
+                            </ul>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/gestao/dashboard">Dashboards</Link>
@@ -44,6 +53,15 @@ function Menu(){
                             <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><Link className="dropdown-item" to="/gestao/cliente">Cliente</Link></li>
                                 <li><Link className="dropdown-item" to="/gestao/fornecedor">Fornecedor</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/vendedor">Vendedor</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/marca">Marca</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/produto">Produto</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/transporte">Transporte</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/tipotransporte">Tipo de Transporte</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/tabelapreco">Tabela de Preços</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/areavenda">Área de Venda</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/tabelaprecos">Tabela de Preços</Link></li>
+                                <li><Link className="dropdown-item" to="/gestao/classificacaocliente">Classificação do Cliente</Link></li>
                                 
                                 
                             </ul>
@@ -63,7 +81,7 @@ function Menu(){
                                 <li><Link className="dropdown-item" to="/cadastro/tabelaprecos">Tabela de Preços</Link></li>
                                 <li><Link className="dropdown-item" to="/cadastro/areavenda">Area de Venda</Link></li>
                                 <li><Link className="dropdown-item" to="/cadastro/classificacaocliente">Classificação do Cliente</Link></li>
-                                <li><Link className="dropdown-item" to="/cadastro/pesquisa">Pesquisa</Link></li>
+                                
                                 
                             </ul>
             </li>

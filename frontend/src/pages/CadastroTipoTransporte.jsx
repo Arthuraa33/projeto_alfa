@@ -100,10 +100,10 @@ const CadastroTipoTransporte = () => {
                         value={carregamento}
                         onChange={setCarregamento}
                     />
-                    <button type="submit" className="btn btn-primary mt-3">Submit</button>
+                    <button type="submit" className="btn btn-primary mt-3">Criar</button>
                 </form>
             </div>
-            <Footer />
+
         </div>
     );
 };

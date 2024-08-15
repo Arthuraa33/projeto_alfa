@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-import api from "../api";
-import Menu from "../components/Menu";
-import Footer from "../components/Footer";
-import Cliente from "../components/Cliente";
-import "../styles/Home.css";
+import api from "../../api";
+import Menu from "../../components/Menu";
+import Cliente from "../../components/GestaoCadastros/Cliente";
+import "../../styles/Home.css";
 
 function GestaoCliente() {
     const [clientes, setClientes] = useState([]);
@@ -63,7 +62,6 @@ function GestaoCliente() {
                     </tbody>
                 </table>
             </div>
-            <Footer />
         </div>
     );
 }

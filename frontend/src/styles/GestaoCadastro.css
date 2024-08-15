@@ -101,3 +101,31 @@ td {
   text-decoration: none;
   cursor: pointer;
 }
+
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: #fff;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23000" d="M2 0L0 2h4z"/></svg>'); /* Custom dropdown arrow */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 10px;
+  cursor: pointer;
+}
+
+select:hover {
+  border-color: #888;
+}
+
+select:focus {
+  border-color: #2f00ff;
+  outline: none;
+  box-shadow: 0 0 12px rgba(76, 175, 80, 0.5);
+}
+

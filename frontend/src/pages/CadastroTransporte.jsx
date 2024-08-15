@@ -64,14 +64,14 @@ function CadastroTransporte() {
                     onChange={(e) => setCapacidadeUn(e.target.value)}
                     value={capacidade_un}
                 />
-                <label htmlFor="preco_km">Embalagem de Transporte:</label>
+                <label htmlFor="preco_km">Preço por KM:</label>
                 <br />
                 <input
                     type="text"
                     id="preco_km"
                     name="preco_km"
                     required
-                    placeholder="Digite a embalagem de transporte"
+                    placeholder="Digite o Preço por KM"
                     onChange={(e) => setPrecoKm(e.target.value)}
                     value={preco_km}
                 />
