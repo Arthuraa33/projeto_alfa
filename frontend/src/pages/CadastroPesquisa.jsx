@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import api from "../api";
 import Menu from "../components/Menu";
-import Footer from "../components/Footer";
-import "../styles/Pedido.css"
 
 function CadastroPedido() {
 
@@ -12,13 +10,16 @@ function CadastroPedido() {
     const [marcas, setMarcas] = useState([]);
     const [marca_id, setMarcaId] = useState([]);
     const [marca_nome, setMarcaNome] = useState([]);
+    const [fornecedores, setFornecedores] = useState([]);
+    const [fornecedor_id, setFornecedorId] = useState([]);
+    const [fornecedor_nome, setFornecedorNome] = useState([]);
     const [transportes, setTransportes] = useState([]);
     const [transporte_id, setTransporteId] = useState([]);
     const [transporte_nome, setTransporteNome] = useState([]);
     const [tipo_transportes, setTipoTransportes] = useState([]);
     const [tipo_transporte_id, setTipoTransporteId] = useState([]);
     const [tipo_transporte_nome, setTipoTransporteNome] = useState([]);
-
+    const [volume_mensal, setVolumeMensal] = useState([]);
     const [pesquisa_preco, setPesquisaPreco] = useState([]);
     const [pesquisa_preco_sugerido, setPesquisaPrecoSugerido] = useState([]);
 
@@ -27,6 +28,7 @@ function CadastroPedido() {
         getMarcas();
         getTransportes();
         getTipoTransportes();
+        getFornecedores();
     }, []);
     
       const getClientes = () => {
@@ -85,6 +87,20 @@ function CadastroPedido() {
           });
       };
 
+      const getFornecedores = () => {
+        api
+          .get("/api/cadastro/fornecedor/")
+          .then((res) => {
+            setFornecedores(res.data);
+            if (res.data.length > 0) {
+                setFornecedorNome(res.data[0].fornecedor_nome);
+            }
+          })
+          .catch((err) => {
+            console.error('Erro ao buscar Transporte:', err);
+          });
+      };
+
       const createPesquisa = (e) => {
         e.preventDefault();
         const selectedCliente = clientes.find(cliente => cliente.cliente_nome === cliente_nome);
@@ -99,15 +115,21 @@ function CadastroPedido() {
         const selectedTipoTransporte = tipo_transportes.find(tipo_transporte => tipo_transporte.tipo_transporte_nome === tipo_transporte_nome);
         const tipo_transporte_id = selectedTipoTransporte ? selectedTipoTransporte.tipo_transporte_id : null;
 
-        const selectedVendedor = vendedores.find(vendedor => vendedor.vendedor_nome === vendedor_nome);
-        const vendedor_id = selectedVendedor ? selectedVendedor.vendedor_id : null;
-
+        const selectedFornecedor = fornecedores.find(fornecedor => fornecedor.fornecedor_nome === fornecedor_nome);
+        const fornecedor_id = selectedFornecedor ? selectedFornecedor.fornecedor_id : null;
+        
+        console.log({
+            cliente_id, marca_id, transporte_id, tipo_transporte_id,
+            fornecedor_id, volume_mensal, pesquisa_preco, pesquisa_preco_sugerido
+          });
+          
         api
             .post("/api/cadastro/pesquisa/", { cliente_id,
                                             marca_id, 
                                             transporte_id,
                                             tipo_transporte_id,
-                                            vendedor_id,
+                                            fornecedor_id,
+                                            volume_mensal,
                                             pesquisa_preco,
                                             pesquisa_preco_sugerido
                                         })
@@ -179,6 +201,32 @@ function CadastroPedido() {
                                 ))}
                             </select>
                         </div>
+
+                        <div>
+                            <label htmlFor="fornecedor">Fornecedor:</label>
+                            <select 
+                                id="fornecedor" 
+                                name="fornecedor"
+                                onChange={(e) => setFornecedorId(e.target.value)}
+                                value={fornecedor_id}
+                            >
+                                {fornecedores.map(fornecedor => (
+                                    <option key={fornecedor.fornecedor_id} value={fornecedor.fornecedor_id}>{fornecedor.fornecedor_nome}</option>
+                                ))}
+
+                            </select>
+                        </div>
+
+                        <label htmlFor="volume_mensal">Volume Mensal:</label>
+                        <br />
+                        <input
+                            type="text"
+                            id="volume_mensal"
+                            name="volume_mensal"
+                            required
+                            onChange={(e) => setVolumeMensal(e.target.value)}
+                            value={volume_mensal}
+                        />
                         
                         <label htmlFor="pesquisa_preco">Preço Praticado:</label>
                         <br />

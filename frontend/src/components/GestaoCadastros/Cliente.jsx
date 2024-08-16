@@ -54,7 +54,7 @@ function Cliente({ cliente, onDelete, areasVenda, classificacoesCliente }) {
                         <h2>Editar Cliente</h2>
                         <form className="edit-form">
                             {Object.keys(editCliente).map((key, index) => (
-                                (key !== "area_id" && key !== "area_nome" && key !== "classificacao_id" && key !== "cliente_id") && (
+                                (key !== "area_id" && key !== "area_nome" && key !== "classificacao_id") && (
                                     <div key={index} className="form-field">
                                         <label>{key}</label>
                                         <input
