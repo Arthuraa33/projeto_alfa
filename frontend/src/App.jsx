@@ -16,6 +16,7 @@ import CadastroOrcamento from "./pages/CadastroOrcamento"
 import CadastroPesquisa from "./pages/CadastroPesquisa"
 import CadastroAreaVenda from "./pages/CadastroAreaVenda"
 import CadastroClassificacaoCliente from "./pages/CadastroClassificacaoCliente"
+import CadastroCondicaoPagamento from "./pages/CadastroCondicaoPagamento"
 import GestaoDashboard from "./pages/GestaoDashboard" 
 import TarefasKanban from "./pages/Tarefas/TarefasKanban" 
 import CadastroStatusTarefas from "./pages/Tarefas/CadastroStatusTarefas"
@@ -34,6 +35,7 @@ import GestaoTipoTransporte from "./pages/GestaoCadastros/GestaoTipoTransporte"
 import GestaoTabelaPrecos from "./pages/GestaoCadastros/GestaoTabelaPrecos" 
 import GestaoAreaVenda from "./pages/GestaoCadastros/GestaoAreaVenda" 
 import GestaoClassificacaoCliente from "./pages/GestaoCadastros/GestaoClassificacaoCliente" 
+import GestaoCondicaoPagamento from "./pages/GestaoCadastros/GestaoCondicaoPagamento" 
 
 
 function Logout() {
@@ -140,6 +142,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/cadastro/condicaopagamento" element={
+            <ProtectedRoute>
+              <CadastroCondicaoPagamento />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/gestao/cliente" element={
             <ProtectedRoute>
               <GestaoCliente />
@@ -205,6 +215,14 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/gestao/condicaopagamento" element={
+            <ProtectedRoute>
+              <GestaoCondicaoPagamento />
+            </ProtectedRoute>
+          }
+        />
+
         <Route path="/gestao/dashboard" element={
             <ProtectedRoute>
               <GestaoDashboard />

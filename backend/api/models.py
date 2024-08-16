@@ -138,6 +138,13 @@ class TabelaPrecos(models.Model):
     def __str__(self):
         return str(self.preco_id)
 
+class CondicaoPagamento(models.Model):
+    condicao_pagamento_id = models.AutoField(primary_key=True)
+    condicao_pagamento_nome = models.CharField(null=True, max_length=100)
+
+    def __str__(self):
+        return str(self.condicao_pagamento_id)
+
 class Pedidos(models.Model):
     pedido_id = models.AutoField(primary_key=True)
     cliente_id = models.ForeignKey(Clientes,default=0,on_delete=models.CASCADE)
@@ -148,7 +155,7 @@ class Pedidos(models.Model):
     pedido_comissao= models.FloatField(null=True)
     pedido_quantidade = models.IntegerField(null=True)
     pedido_data = models.DateTimeField(null=True)
-    pedido_condicao_pagamento = models.CharField(null=True, max_length=100)
+    condicao_pagamento_id = models.ForeignKey(CondicaoPagamento, default=0, on_delete=models.CASCADE)
     pedido_valor = models.FloatField(null=True)
 
     def __str__(self):
@@ -197,3 +204,4 @@ class ItensOrcamento(models.Model):
 
     def __str__(self):
         return str(self.item_orcamento_id)
+    

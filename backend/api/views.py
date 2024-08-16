@@ -29,6 +29,8 @@ from .serializers import (UserSerializer,
                           OrcamentosUpdateSerializer,
                           PesquisasSerializer,
                           PesquisasUpdateSerializer,
+                          CondicaoPagamentoSerializer,
+                          CondicaoPagamentoUpdateSerializer,
                         #   CidadesSerializer,
                         #   EstadosSerializer
                           ) 
@@ -47,6 +49,7 @@ from .models import (Clientes,
                      TabelaPrecos,
                      Orcamentos,
                      Pesquisas,
+                     CondicaoPagamento,
                     #  Cidades,
                     #  Estados
                     )
@@ -314,6 +317,26 @@ class PesquisasDelete(generics.DestroyAPIView):
 class PesquisasDetail(generics.RetrieveUpdateAPIView):
     queryset = Pesquisas.objects.all()
     serializer_class = PesquisasUpdateSerializer
+    permission_classes = [IsAuthenticated]
+
+class CondicaoPagamentoListCreate(generics.ListCreateAPIView):
+    queryset = CondicaoPagamento.objects.all()
+    serializer_class = CondicaoPagamentoSerializer
+    permission_classes = [IsAuthenticated]
+
+class CondicaoPagamentoList(generics.ListCreateAPIView):
+    queryset = CondicaoPagamento.objects.all()
+    serializer_class = CondicaoPagamentoSerializer
+    permission_classes = [IsAuthenticated]
+
+class CondicaoPagamentoDelete(generics.DestroyAPIView):
+    queryset = CondicaoPagamento.objects.all()
+    serializer_class = CondicaoPagamentoSerializer
+    permission_classes = [IsAuthenticated]
+
+class CondicaoPagamentoDetail(generics.RetrieveUpdateAPIView):
+    queryset = CondicaoPagamento.objects.all()
+    serializer_class = CondicaoPagamentoUpdateSerializer
     permission_classes = [IsAuthenticated]
 
 # class CidadesListCreate(generics.ListCreateAPIView):

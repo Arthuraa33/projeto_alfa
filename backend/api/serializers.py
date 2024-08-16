@@ -14,6 +14,7 @@ from .models import (
                      TabelaPrecos,
                      Orcamentos,
                      Pesquisas,
+                     CondicaoPagamento,
                     #  Cidades,
                     #  Estados
                      )
@@ -296,6 +297,22 @@ class PesquisasUpdateSerializer(serializers.ModelSerializer):
         instance.tipo_transporte_id = validated_data.get('tipo_transporte_id', instance.tipo_transporte_id)
         instance.pesquisa_preco = validated_data.get('pesquisa_preco', instance.pesquisa_preco)
         instance.pesquisa_preco_sugerido = validated_data.get('pesquisa_preco_sugerido', instance.pesquisa_preco_sugerido)
+
+        instance.save()
+        return instance
+
+class CondicaoPagamentoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CondicaoPagamento
+        fields = '__all__'
+
+class CondicaoPagamentoUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = CondicaoPagamento
+        fields = '__all__'
+
+    def update(self, instance, validated_data):
+        instance.condicao_pagamento_nome = validated_data.get('condicao_pagamento_nome', instance.condicao_pagamento_nome)
 
         instance.save()
         return instance
